@@ -1,0 +1,186 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "services": "Services",
+    "providers": "Artisans",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "register": "Inscription",
+    "profile": "Profil",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres",
+    "logout": "Déconnexion"
+  },
+  "home": {
+    "hero": {
+      "title": "Trouvez le bon M3allam pour vos travaux",
+      "subtitle": "Des artisans qualifiés et vérifiés pour tous vos besoins à domicile, partout au Maroc. Intervention rapide et devis gratuit.",
+      "cta_primary": "Demander un service",
+      "cta_secondary": "Devenir M3allam",
+      "badge": "Plateforme N°1 au Maroc",
+      "stats": {
+        "artisans": "500+ artisans",
+        "cities": "12 villes",
+        "rating": "4.8/5 Note moyenne"
+      }
+    },
+    "services": {
+      "title": "Nos services",
+      "subtitle": "Des artisans experts pour chaque besoin, disponibles dans tout le Maroc",
+      "plumbing": {
+        "name": "Plomberie",
+        "description": "Réparations et installations",
+        "providers": "85 artisans"
+      },
+      "electricity": {
+        "name": "Électricité",
+        "description": "Dépannage et mise aux normes",
+        "providers": "72 artisans"
+      },
+      "painting": {
+        "name": "Peinture",
+        "description": "Intérieur et extérieur",
+        "providers": "64 artisans"
+      },
+      "carpentry": {
+        "name": "Menuiserie",
+        "description": "Meubles et aménagements",
+        "providers": "58 artisans"
+      },
+      "cleaning": {
+        "name": "Nettoyage",
+        "description": "Ménage et grand nettoyage",
+        "providers": "93 artisans"
+      },
+      "hvac": {
+        "name": "Climatisation",
+        "description": "Installation et entretien",
+        "providers": "47 artisans"
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça marche ?",
+      "step1": {
+        "title": "Choisissez votre service",
+        "description": "Parcourez nos catégories et sélectionnez le service dont vous avez besoin"
+      },
+      "step2": {
+        "title": "Remplissez le formulaire",
+        "description": "Décrivez votre problème et ajoutez une vidéo pour un diagnostic plus précis et rapide"
+      },
+      "step3": {
+        "title": "Soyez contacté sous 2h",
+        "description": "Un artisan qualifié proche de chez vous vous contacte rapidement"
+      },
+      "cta": "Faire une demande maintenant"
+    },
+    "testimonials": {
+      "title": "Ce que disent nos clients",
+      "subtitle": "2400+ clients satisfaits au Maroc",
+      "review1": {
+        "text": "Excellent service, l'artisan est arrivé en moins d'une heure. Très propre et professionnel. Je recommande vivement!",
+        "author": "Youssef A.",
+        "location": "Casablanca",
+        "service": "Plomberie"
+      },
+      "review2": {
+        "text": "J'ai filmé la panne électrique et envoyé la vidéo. Le technicien savait exactement quoi apporter. Gain de temps!",
+        "author": "Fatima B.",
+        "location": "Rabat",
+        "service": "Électricité"
+      },
+      "review3": {
+        "text": "Depuis que je suis sur M3allam Connect, je reçois 4-5 demandes par semaine. La plateforme a changé mon activité!",
+        "author": "Hassan M.",
+        "location": "Marrakech",
+        "service": "Prestataire"
+      }
+    },
+    "ctaBanner": {
+      "title": "Rejoignez nos 500 artisans",
+      "subtitle": "Créez votre profil gratuitement et recevez des demandes de clients dès aujourd'hui",
+      "cta": "Devenir M3allam",
+      "note": "Inscription gratuite - Validation sous 24h"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "email": "Email",
+      "password": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "noAccount": "Pas de compte ?",
+      "signUp": "S'inscrire"
+    },
+    "register": {
+      "title": "Inscription",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "userType": "Type d'utilisateur",
+      "client": "Client",
+      "provider": "Artisan",
+      "hasAccount": "Déjà un compte ?",
+      "signIn": "Se connecter"
+    }
+  },
+  "services": {
+    "title": "Services",
+    "description": "Découvrez tous nos services disponibles",
+    "allServices": "Tous les services",
+    "providers": "Artisans disponibles",
+    "noProviders": "Aucun artisan disponible pour ce service",
+    "contactProvider": "Contacter l'artisan"
+  },
+  "providers": {
+    "title": "Artisans",
+    "subtitle": "Trouvez le professionnel parfait pour votre projet",
+    "filterByService": "Filtrer par service",
+    "filterByCity": "Filtrer par ville",
+    "sortBy": "Trier par",
+    "rating": "Note",
+    "experience": "Expérience",
+    "price": "Prix",
+    "viewProfile": "Voir le profil",
+    "contact": "Contacter",
+    "noProvidersFound": "Aucun artisan trouvé"
+  },
+  "request": {
+    "title": "Faire une demande",
+    "selectService": "Sélectionnez un service",
+    "describeProblem": "Décrivez votre problème",
+    "addPhotos": "Ajouter des photos",
+    "addVideo": "Ajouter une vidéo (optionnel)",
+    "location": "Localisation",
+    "urgency": "Urgence",
+    "low": "Faible",
+    "medium": "Moyenne",
+    "high": "Élevée",
+    "submitRequest": "Soumettre la demande",
+    "requestSubmitted": "Demande soumise avec succès",
+    "weWillContact": "Nous vous contacterons dans les plus brefs délais"
+  }
+}

@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3f7f5;
+  --foreground: #111827;
+  --primary: #0B3B24;
+  --primary-dark: #072a19;
+  --mint-light: #C2E0C6;
+  --emerald-mid: #4A8B71;
+  --blue-gray: #B8CDD1;
+  --text-muted: #6B7280;
+  --surface-dark: #1A1A1A;
 }
 
 @theme inline {
@@ -12,15 +19,111 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body {
+  background: linear-gradient(to bottom, #FFFFFF 0%, #F0F7F4 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(11, 59, 36, 0.3); }
+  50% { box-shadow: 0 0 0 10px rgba(11, 59, 36, 0); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-float-soft {
+  animation: floatSoft 3.2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.2s ease-in-out infinite;
+}
+
+.hero-gradient {
+  background: linear-gradient(120deg, var(--mint-light) 0%, var(--background) 45%, var(--mint-light) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.card-lift {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.1);
+}
+
+/* Global palette overrides for existing Tailwind utility classes */
+.bg-orange-500 { background-color: var(--primary) !important; }
+.hover\:bg-orange-600:hover { background-color: var(--primary-dark) !important; }
+.bg-orange-100 { background-color: var(--mint-light) !important; }
+.hover\:bg-orange-50:hover { background-color: var(--mint-light) !important; }
+
+.text-orange-500 { color: var(--primary) !important; }
+.text-orange-600 { color: var(--emerald-mid) !important; }
+.hover\:text-orange-500:hover { color: var(--primary) !important; }
+.hover\:text-orange-600:hover { color: var(--emerald-mid) !important; }
+
+.border-orange-500 { border-color: var(--primary) !important; }
+.hover\:border-orange-500:hover { border-color: var(--emerald-mid) !important; }
+
+.bg-gray-50 { background-color: var(--blue-gray) !important; }
+.bg-gray-900 { background-color: var(--surface-dark) !important; }
+.text-gray-900 { color: #111827 !important; }
+.text-gray-600 { color: #6b7280 !important; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+@keyframes fade-in-canvas {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.fade-in-canvas {
+  opacity: 0;
+  touch-action: none;
+  animation: fade-in-canvas 5s ease 1s forwards;
 }

@@ -1,0 +1,186 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "providers": "Providers",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "home": {
+    "hero": {
+      "title": "Find the right M3allam for your work",
+      "subtitle": "Qualified and verified artisans for all your home needs, everywhere in Morocco. Fast intervention and free quote.",
+      "cta_primary": "Request a service",
+      "cta_secondary": "Become a M3allam",
+      "badge": "N°1 Platform in Morocco",
+      "stats": {
+        "artisans": "500+ artisans",
+        "cities": "12 cities",
+        "rating": "4.8/5 Average rating"
+      }
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Expert craftsmen for every need, available throughout Morocco",
+      "plumbing": {
+        "name": "Plumbing",
+        "description": "Repairs and installations",
+        "providers": "85 artisans"
+      },
+      "electricity": {
+        "name": "Electricity",
+        "description": "Troubleshooting and compliance",
+        "providers": "72 artisans"
+      },
+      "painting": {
+        "name": "Painting",
+        "description": "Interior and exterior",
+        "providers": "64 artisans"
+      },
+      "carpentry": {
+        "name": "Carpentry",
+        "description": "Furniture and fittings",
+        "providers": "58 artisans"
+      },
+      "cleaning": {
+        "name": "Cleaning",
+        "description": "House cleaning and deep cleaning",
+        "providers": "93 artisans"
+      },
+      "hvac": {
+        "name": "Air Conditioning",
+        "description": "Installation and maintenance",
+        "providers": "47 artisans"
+      }
+    },
+    "howItWorks": {
+      "title": "How it works?",
+      "step1": {
+        "title": "Choose your service",
+        "description": "Browse our categories and select the service you need"
+      },
+      "step2": {
+        "title": "Fill out the form",
+        "description": "Describe your problem and add a video for more precise and quick diagnosis"
+      },
+      "step3": {
+        "title": "Be contacted within 2 hours",
+        "description": "A qualified artisan near you will contact you quickly"
+      },
+      "cta": "Make a request now"
+    },
+    "testimonials": {
+      "title": "What our clients say",
+      "subtitle": "2400+ satisfied customers in Morocco",
+      "review1": {
+        "text": "Excellent service, the artisan arrived in less than an hour. Very clean and professional. I highly recommend!",
+        "author": "Youssef A.",
+        "location": "Casablanca",
+        "service": "Plumbing"
+      },
+      "review2": {
+        "text": "I filmed the electrical problem and sent the video. The technician knew exactly what to bring. Time saved!",
+        "author": "Fatima B.",
+        "location": "Rabat",
+        "service": "Electricity"
+      },
+      "review3": {
+        "text": "Since I've been on M3allam Connect, I receive 4-5 requests per week. The platform has changed my business!",
+        "author": "Hassan M.",
+        "location": "Marrakech",
+        "service": "Provider"
+      }
+    },
+    "ctaBanner": {
+      "title": "Join our 500 artisans",
+      "subtitle": "Create your profile for free and receive customer requests starting today",
+      "cta": "Become a M3allam",
+      "note": "Free registration - Validation within 24h"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "noAccount": "No account?",
+      "signUp": "Sign up"
+    },
+    "register": {
+      "title": "Register",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "userType": "User Type",
+      "client": "Client",
+      "provider": "Artisan",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in"
+    }
+  },
+  "services": {
+    "title": "Services",
+    "description": "Discover all our available services",
+    "allServices": "All services",
+    "providers": "Available artisans",
+    "noProviders": "No artisans available for this service",
+    "contactProvider": "Contact artisan"
+  },
+  "providers": {
+    "title": "Artisans",
+    "subtitle": "Find the perfect professional for your project",
+    "filterByService": "Filter by service",
+    "filterByCity": "Filter by city",
+    "sortBy": "Sort by",
+    "rating": "Rating",
+    "experience": "Experience",
+    "price": "Price",
+    "viewProfile": "View profile",
+    "contact": "Contact",
+    "noProvidersFound": "No artisans found"
+  },
+  "request": {
+    "title": "Make a request",
+    "selectService": "Select a service",
+    "describeProblem": "Describe your problem",
+    "addPhotos": "Add photos",
+    "addVideo": "Add video (optional)",
+    "location": "Location",
+    "urgency": "Urgency",
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "submitRequest": "Submit request",
+    "requestSubmitted": "Request submitted successfully",
+    "weWillContact": "We will contact you shortly"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "save": "حفظ",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "search": "بحث",
+    "filter": "تصفية",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "submit": "إرسال",
+    "yes": "نعم",
+    "no": "لا"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "services": "الخدمات",
+    "providers": "الحرفيون",
+    "about": "حول",
+    "contact": "اتصل بنا",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "profile": "الملف الشخصي",
+    "dashboard": "لوحة التحكم"
+  },
+  "login": {
+    "title": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "rememberMe": "تذكرني",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "loginButton": "دخول",
+    "noAccount": "ليس لديك حساب؟",
+    "createAccount": "إنشاء حساب جديد"
+  },
+  "register": {
+    "title": "إنشاء حساب جديد",
+    "firstName": "الاسم الأول",
+    "lastName": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "phone": "رقم الهاتف",
+    "role": "الدور",
+    "registerButton": "إنشاء حساب",
+    "hasAccount": "لديك بالفعل حساب؟",
+    "signIn": "تسجيل الدخول"
+  },
+  "services": {
+    "title": "الخدمات",
+    "findServices": "ابحث عن الخدمات",
+    "allServices": "جميع الخدمات",
+    "category": "الفئة",
+    "provider": "مقدم الخدمة",
+    "rating": "التقييم",
+    "reviews": "التقييمات",
+    "contactProvider": "اتصل بمقدم الخدمة"
+  },
+  "providers": {
+    "title": "الحرفيون",
+    "findProviders": "ابحث عن الحرفيين",
+    "allProviders": "جميع الحرفيين",
+    "specialty": "التخصص",
+    "location": "الموقع",
+    "rating": "التقييم",
+    "reviews": "التقييمات",
+    "contactProvider": "اتصل بالحرفي",
+    "verified": "موثق",
+    "available": "متاح"
+  }
+}

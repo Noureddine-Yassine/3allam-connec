@@ -166,15 +166,15 @@ export default function RequestPage() {
               <h3 className="font-bold text-gray-900 mb-4">Prochaines étapes:</h3>
               <div className="space-y-3">
                 <div className="flex items-center">
-                <div className="w-8 h-8 bg-[#0B3B24] text-white rounded-full flex items-center justify-center font-bold mr-3">1</div>
+                <div className="w-8 h-8 bg-[#0B2C5E] text-white rounded-full flex items-center justify-center font-bold mr-3">1</div>
                   <span>Analyse de votre demande</span>
                 </div>
                 <div className="flex items-center">
-                <div className="w-8 h-8 bg-[#0B3B24] text-white rounded-full flex items-center justify-center font-bold mr-3">2</div>
+                <div className="w-8 h-8 bg-[#0B2C5E] text-white rounded-full flex items-center justify-center font-bold mr-3">2</div>
                   <span>Sélection du meilleur artisan</span>
                 </div>
                 <div className="flex items-center">
-                <div className="w-8 h-8 bg-[#0B3B24] text-white rounded-full flex items-center justify-center font-bold mr-3">3</div>
+                <div className="w-8 h-8 bg-[#0B2C5E] text-white rounded-full flex items-center justify-center font-bold mr-3">3</div>
                   <span>Contact dans les 2 heures</span>
                 </div>
               </div>
@@ -197,13 +197,13 @@ export default function RequestPage() {
                   setVideoFile(null);
                   setVideoPreview("");
                 }}
-                className="px-6 py-3 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium"
+                className="px-6 py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
               >
                 Nouvelle demande
               </button>
               <Link
                 href="/"
-                className="px-6 py-3 border border-[#0B3B24] text-[#0B3B24] rounded-lg hover:bg-[#C2E0C6] transition-colors font-medium text-center"
+                className="px-6 py-3 border border-[#0B2C5E] text-[#0B2C5E] rounded-lg hover:bg-blue-100 transition-colors font-medium text-center"
               >
                 Retour accueil
               </Link>
@@ -220,7 +220,7 @@ export default function RequestPage() {
       <div className="hero-gradient py-12 px-4">
         <div className="max-w-4xl mx-auto">
           <nav className="text-sm text-gray-600 mb-4">
-            <Link href="/" className="hover:text-[#0B3B24]">Accueil</Link>
+            <Link href="/" className="hover:text-[#0B2C5E]">Accueil</Link>
             <span className="mx-2">&gt;</span>
             <span>Demande de service</span>
           </nav>
@@ -231,16 +231,16 @@ export default function RequestPage() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <div className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm font-medium">
+            <div className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full text-sm font-medium">
               Réponse sous 2h
             </div>
-            <div className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm font-medium">
+            <div className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full text-sm font-medium">
               Artisans vérifiés
             </div>
-            <div className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm font-medium">
+            <div className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full text-sm font-medium">
               Vidéo acceptée
             </div>
-            <div className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm font-medium">
+            <div className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full text-sm font-medium">
               Géolocalisation
             </div>
           </div>
@@ -282,7 +282,7 @@ export default function RequestPage() {
             <div className="mb-8">
               <h3 className="text-xl font-bold text-gray-900 mb-6 relative">
                 Vos informations
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#4A8B71]"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -296,7 +296,7 @@ export default function RequestPage() {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     placeholder="Youssef Alami"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     required
                   />
                 </div>
@@ -315,7 +315,7 @@ export default function RequestPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="6 XX XX XX XX"
-                      className="w-full pl-16 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                      className="w-full pl-16 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                       required
                     />
                   </div>
@@ -331,7 +331,7 @@ export default function RequestPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="email@exemple.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                   />
                 </div>
                 
@@ -343,7 +343,7 @@ export default function RequestPage() {
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     required
                   >
                     <option value="">Sélectionnez une ville</option>
@@ -359,7 +359,7 @@ export default function RequestPage() {
             <div className="mb-8">
               <h3 className="text-xl font-bold text-gray-900 mb-6 relative">
                 Votre besoin
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#4A8B71]"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -371,7 +371,7 @@ export default function RequestPage() {
                     name="service"
                     value={formData.service}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     required
                   >
                     <option value="">Sélectionnez un service</option>
@@ -389,7 +389,7 @@ export default function RequestPage() {
                     name="urgency"
                     value={formData.urgency}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                   >
                     {urgencyLevels.map(level => (
                       <option key={level.value} value={level.value}>
@@ -411,7 +411,7 @@ export default function RequestPage() {
                   placeholder="Ex: J'ai une fuite sous l'évier depuis hier, l'eau coule lentement..."
                   rows={5}
                   maxLength={500}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71] resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E] resize-none"
                   required
                 />
                 <div className="text-right text-sm text-gray-500 mt-1">
@@ -424,22 +424,22 @@ export default function RequestPage() {
             <div className="mb-8">
               <h3 className="text-xl font-bold text-gray-900 mb-2 relative">
                 Vidéo (optionnel)
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#4A8B71]"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
               </h3>
-              <p className="text-[#0B3B24] text-sm mb-6">
+              <p className="text-[#0B2C5E] text-sm mb-6">
                 Les demandes avec vidéo sont traitées 3x plus rapidement par nos artisans
               </p>
               
               {!videoPreview ? (
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="border-2 border-dashed border-[#4A8B71] rounded-xl bg-[#C2E0C6] min-h-[160px] flex flex-col items-center justify-center cursor-pointer hover:bg-[#B8CDD1] transition-colors mb-6"
+                  className="border-2 border-dashed border-[#0B2C5E] rounded-xl bg-blue-100 min-h-[160px] flex flex-col items-center justify-center cursor-pointer hover:bg-blue-200 transition-colors mb-6"
                 >
-                  <Camera className="w-12 h-12 text-[#0B3B24] mb-4" />
+                  <Camera className="w-12 h-12 text-[#0B2C5E] mb-4" />
                   <p className="font-bold text-gray-900 mb-2">Filmez votre problème</p>
                   <p className="text-gray-600 text-sm mb-2">Cliquez ici ou glissez votre vidéo dans cette zone</p>
                   <p className="text-gray-500 text-xs mb-1">Formats acceptés: MP4, MOV, AVI - Taille maximum: 50 Mo</p>
-                  <p className="text-[#0B3B24] text-sm">Montrez la panne, la fuite, le mur...</p>
+                  <p className="text-[#0B2C5E] text-sm">Montrez la panne, la fuite, le mur...</p>
                 </div>
               ) : (
                 <div className="space-y-4 mb-6">
@@ -485,7 +485,7 @@ export default function RequestPage() {
             <div className="mb-8">
               <h3 className="text-xl font-bold text-gray-900 mb-2 relative">
                 Votre localisation
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#4A8B71]"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
               </h3>
               <p className="text-gray-600 text-sm mb-4">
                 {formData.location ? 
@@ -522,7 +522,7 @@ export default function RequestPage() {
             <div className="space-y-4">
               <button
                 type="submit"
-                className="w-full py-4 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={locationLoading}
               >
                 {locationLoading ? (

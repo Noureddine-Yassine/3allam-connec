@@ -94,11 +94,11 @@ export default function HomeContent() {
             {/* Left side (Text) */}
             <div className="lg:w-1/2 text-center lg:text-left z-10 flex flex-col items-center lg:items-start">
               {/* Badge N°1 Platform - Micro-branding */}
-              <div className="inline-flex items-center px-4 py-2 bg-emerald-100/50 text-emerald-700 rounded-full text-xs font-bold border border-emerald-200 backdrop-blur-sm animate-pulse mb-8 shadow-sm relative overflow-hidden">
+              <div className="inline-flex items-center px-4 py-2 bg-blue-50/50 text-[#0B2C5E] rounded-full text-xs font-bold border border-blue-200 backdrop-blur-sm animate-pulse mb-8 shadow-sm relative overflow-hidden">
                 {/* Animated gradient border */}
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 via-emerald-500/20 to-emerald-600/20 animate-spin-slow"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0B2C5E]/20 via-[#0B2C5E]/30 to-[#0B2C5E]/20 animate-spin-slow"></div>
                 <div className="relative flex items-center">
-                  <TrendingUp className="w-4 h-4 mr-2 text-emerald-700" />
+                  <TrendingUp className="w-4 h-4 mr-2 text-[#0B2C5E]" />
                   {t.home.hero.badge}
                 </div>
               </div>
@@ -109,7 +109,7 @@ export default function HomeContent() {
                   <span key={index}>
                     {part}
                     {index === 0 && (
-                      <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-[#0B2C5E] to-[#0B2C5E] bg-clip-text text-transparent">
                         M3allam
                       </span>
                     )}
@@ -126,7 +126,7 @@ export default function HomeContent() {
                 {/* Bouton Principal - Profondeur */}
                 <Link
                   href="/request"
-                  className="px-8 py-4 bg-emerald-900 text-white rounded-xl shadow-[0_10px_20px_rgba(6,78,59,0.2)] hover:shadow-emerald-900/40 hover:-translate-y-1 transition-all duration-300 font-bold text-lg w-full sm:w-auto text-center animate-pulse-glow relative overflow-hidden group"
+                  className="px-8 py-4 bg-[#F27405] text-white rounded-xl shadow-[0_10px_20px_rgba(242,116,5,0.2)] hover:shadow-[#F27405]/40 hover:-translate-y-1 transition-all duration-300 font-bold text-lg w-full sm:w-auto text-center animate-pulse-glow relative overflow-hidden group"
                 >
                   {/* Effet de brillance */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -136,7 +136,7 @@ export default function HomeContent() {
                 {/* Bouton Secondaire - Glassmorphism */}
                 <Link
                   href="/register"
-                  className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-slate-200 text-slate-700 rounded-xl hover:border-emerald-600 hover:text-emerald-600 transition-all duration-300 font-bold text-lg hover:-translate-y-1 w-full sm:w-auto text-center shadow-sm hover:shadow-md"
+                  className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-slate-200 text-slate-700 rounded-xl hover:border-[#0B2C5E] hover:text-[#0B2C5E] transition-all duration-300 font-bold text-lg hover:-translate-y-1 w-full sm:w-auto text-center shadow-sm hover:shadow-md"
                 >
                   {t.home.hero.cta_secondary}
                 </Link>
@@ -146,11 +146,11 @@ export default function HomeContent() {
               <div className="flex flex-wrap sm:flex-nowrap justify-center lg:justify-start items-center gap-4 sm:gap-6">
                 {/* Artisans Capsule */}
                 <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm border border-slate-200 rounded-full px-4 py-3 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                    <Users className="w-5 h-5 text-emerald-600" />
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <Users className="w-5 h-5 text-[#0B2C5E]" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-emerald-600 font-black text-2xl">{counters.artisans}+</span>
+                    <span className="text-[#0B2C5E] font-black text-2xl">{counters.artisans}+</span>
                     <span className="text-slate-600 font-semibold text-xs uppercase tracking-wide">Artisans</span>
                   </div>
                 </div>
@@ -199,17 +199,17 @@ export default function HomeContent() {
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, #0B3B24 0%, transparent 50%),
-                             radial-gradient(circle at 80% 80%, #4A8B71 0%, transparent 50%),
-                             radial-gradient(circle at 40% 20%, #C2E0C6 0%, transparent 50%)`
+            backgroundImage: `radial-gradient(circle at 20% 50%, #0B2C5E 0%, transparent 50%),
+                             radial-gradient(circle at 80% 80%, #0B2C5E 0%, transparent 50%),
+                             radial-gradient(circle at 40% 20%, #E8F4FD 0%, transparent 50%)`
           }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm border border-[#4A8B71]/20 rounded-full text-[#0B3B24] text-sm font-medium mb-6 shadow-sm">
-              <Sparkles className="w-4 h-4 mr-2 text-[#0B3B24]" />
+            <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm border border-[#0B2C5E]/20 rounded-full text-[#0B2C5E] text-sm font-medium mb-6 shadow-sm">
+              <Sparkles className="w-4 h-4 mr-2 text-[#0B2C5E]" />
               {t.home.services.subtitle}
             </div>
             <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
@@ -226,7 +226,7 @@ export default function HomeContent() {
               { icon: <Wrench className="w-8 h-8" />, key: "plumbing" as ServiceKey, color: "from-blue-500 to-blue-600" },
               { icon: <Zap className="w-8 h-8" />, key: "electricity" as ServiceKey, color: "from-yellow-500 to-orange-500" },
               { icon: <Palette className="w-8 h-8" />, key: "painting" as ServiceKey, color: "from-purple-500 to-pink-500" },
-              { icon: <Trees className="w-8 h-8" />, key: "carpentry" as ServiceKey, color: "from-green-500 to-emerald-500" },
+              { icon: <Trees className="w-8 h-8" />, key: "carpentry" as ServiceKey, color: "from-[#0B2C5E] to-[#0B2C5E]" },
               { icon: <Sparkles className="w-8 h-8" />, key: "cleaning" as ServiceKey, color: "from-cyan-500 to-blue-500" },
               { icon: <Snowflake className="w-8 h-8" />, key: "hvac" as ServiceKey, color: "from-indigo-500 to-purple-500" }
             ].map((service, index) => (
@@ -246,14 +246,14 @@ export default function HomeContent() {
                 
                 {/* Content */}
                 <div className="relative">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#0B3B24] transition-colors">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#0B2C5E] transition-colors">
                     {t.home.services[service.key].name}
                   </h3>
                   <p className="text-gray-600 mb-4 leading-relaxed">
                     {t.home.services[service.key].description}
                   </p>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-medium text-[#0B3B24] bg-[#C2E0C6]/30 px-3 py-1 rounded-full">
+                    <span className="text-sm font-medium text-[#0B2C5E] bg-blue-100/50 px-3 py-1 rounded-full">
                       {t.home.services[service.key].providers}
                     </span>
                     <div className="flex items-center text-yellow-500">
@@ -266,14 +266,14 @@ export default function HomeContent() {
                   {/* CTA Button */}
                   <Link
                     href="/providers"
-                    className="block w-full text-center bg-gradient-to-r from-[#0B3B24] to-[#4A8B71] text-white font-semibold py-3 px-6 rounded-xl hover:from-[#072a19] hover:to-[#3A7B61] transition-all duration-300 shadow-md hover:shadow-lg group-hover:scale-105"
+                    className="block w-full text-center bg-[#0B2C5E] text-white font-semibold py-3 px-6 rounded-xl hover:bg-[#081f45] transition-all duration-300 shadow-md hover:shadow-lg group-hover:scale-105"
                   >
                     Voir les Artisans
                   </Link>
                 </div>
                 
                 {/* Hover Effect Border */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0B3B24]/20 to-[#4A8B71]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0B2C5E]/20 to-[#0B2C5E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               </div>
             ))}
           </div>
@@ -281,20 +281,20 @@ export default function HomeContent() {
       </section>
 
       {/* HOW IT WORKS SECTION - MODERNE */}
-      <section ref={howItWorksRef} className="py-20 px-4 bg-gradient-to-br from-slate-50 to-emerald-50/30 relative overflow-hidden">
+      <section ref={howItWorksRef} className="py-20 px-4 bg-gradient-to-br from-slate-50 to-blue-50/30 relative overflow-hidden">
         {/* Background Pattern Subtil */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 30% 20%, #0B3B24 0%, transparent 50%),
-                             radial-gradient(circle at 70% 80%, #4A8B71 0%, transparent 50%)`
+            backgroundImage: `radial-gradient(circle at 30% 20%, #0B2C5E 0%, transparent 50%),
+                             radial-gradient(circle at 70% 80%, #0B2C5E 0%, transparent 50%)`
           }}></div>
         </div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm border border-emerald-200/50 rounded-full text-emerald-700 text-sm font-medium mb-6 shadow-sm">
-              <CheckCircle className="w-4 h-4 mr-2 text-emerald-700" />
+            <div className="inline-flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm border border-blue-200/50 rounded-full text-[#0B2C5E] text-sm font-medium mb-6 shadow-sm">
+              <CheckCircle className="w-4 h-4 mr-2 text-[#0B2C5E]" />
               Processus Simple
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
@@ -324,8 +324,8 @@ export default function HomeContent() {
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#0B3B24" />
-                  <stop offset="100%" stopColor="#4A8B71" />
+                  <stop offset="0%" stopColor="#0B2C5E" />
+                  <stop offset="100%" stopColor="#0B2C5E" />
                 </linearGradient>
               </defs>
             </svg>
@@ -334,11 +334,11 @@ export default function HomeContent() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
               {[
                 { 
-                  icon: <Search className="w-8 h-8 text-emerald-600 animate-search-sweep" />, 
+                  icon: <Search className="w-8 h-8 text-[#0B2C5E] animate-search-sweep" />, 
                   step: "01", 
                   title: t.home.howItWorks.step1.title, 
                   description: t.home.howItWorks.step1.description,
-                  color: "from-emerald-500 to-emerald-600"
+                  color: "from-[#0B2C5E] to-[#0B2C5E]"
                 },
                 { 
                   icon: <Edit className="w-8 h-8 text-blue-600 animate-pencil-write" />, 
@@ -376,7 +376,7 @@ export default function HomeContent() {
                     </div>
                     
                     {/* Contenu */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#0B2C5E] transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
@@ -385,7 +385,7 @@ export default function HomeContent() {
                   </div>
                   
                   {/* Point de connexion au chemin */}
-                  <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-4 border-emerald-500 rounded-full shadow-md z-20"></div>
+                  <div className="absolute top-10 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white border-4 border-[#0B2C5E] rounded-full shadow-md z-20"></div>
                 </div>
               ))}
             </div>
@@ -395,7 +395,7 @@ export default function HomeContent() {
           <div className="text-center">
             <Link
               href="/request"
-              className="inline-block px-10 py-4 bg-gradient-to-r from-emerald-900 to-emerald-700 text-white rounded-2xl hover:from-emerald-800 hover:to-emerald-600 transition-all duration-300 font-bold text-lg shadow-emerald-900/30 shadow-lg hover:shadow-emerald-900/50 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden group"
+              className="inline-block px-10 py-4 bg-gradient-to-r from-[#F27405] to-[#d96504] text-white rounded-2xl hover:from-[#d96504] hover:to-[#F27405] transition-all duration-300 font-bold text-lg shadow-orange-500/30 shadow-lg hover:shadow-orange-500/50 hover:shadow-xl hover:-translate-y-1 relative overflow-hidden group"
             >
               {/* Effet de brillance */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -420,63 +420,63 @@ export default function HomeContent() {
             <div className="bg-white border border-gray-200 rounded-xl p-6 card-lift">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-[#4A8B71] fill-current" />
+                  <Star key={i} className="w-5 h-5 text-[#F27405] fill-current" />
                 ))}
               </div>
               <p className="text-gray-600 italic mb-6">
                 "{t.home.testimonials.review1.text}"
               </p>
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center text-white font-bold mr-3">
+                <div className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center text-white font-bold mr-3">
                   YA
                 </div>
                 <div>
                   <p className="font-bold text-gray-900">{t.home.testimonials.review1.author}</p>
                   <p className="text-gray-600 text-sm">{t.home.testimonials.review1.location}</p>
                 </div>
-                <span className="ml-auto px-3 py-1 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm">{t.home.testimonials.review1.service}</span>
+                <span className="ml-auto px-3 py-1 bg-blue-100 text-[#0B2C5E] rounded-full text-sm">{t.home.testimonials.review1.service}</span>
               </div>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-xl p-6 card-lift">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-[#4A8B71] fill-current" />
+                  <Star key={i} className="w-5 h-5 text-[#F27405] fill-current" />
                 ))}
               </div>
               <p className="text-gray-600 italic mb-6">
                 "{t.home.testimonials.review2.text}"
               </p>
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center text-white font-bold mr-3">
+                <div className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center text-white font-bold mr-3">
                   FB
                 </div>
                 <div>
                   <p className="font-bold text-gray-900">{t.home.testimonials.review2.author}</p>
                   <p className="text-gray-600 text-sm">{t.home.testimonials.review2.location}</p>
                 </div>
-                <span className="ml-auto px-3 py-1 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm">{t.home.testimonials.review2.service}</span>
+                <span className="ml-auto px-3 py-1 bg-blue-100 text-[#0B2C5E] rounded-full text-sm">{t.home.testimonials.review2.service}</span>
               </div>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-xl p-6 card-lift">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-[#4A8B71] fill-current" />
+                  <Star key={i} className="w-5 h-5 text-[#F27405] fill-current" />
                 ))}
               </div>
               <p className="text-gray-600 italic mb-6">
                 "{t.home.testimonials.review3.text}"
               </p>
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center text-white font-bold mr-3">
+                <div className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center text-white font-bold mr-3">
                   HM
                 </div>
                 <div>
                   <p className="font-bold text-gray-900">{t.home.testimonials.review3.author}</p>
                   <p className="text-gray-600 text-sm">{t.home.testimonials.review3.location}</p>
                 </div>
-                <span className="ml-auto px-3 py-1 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm">{t.home.testimonials.review3.service}</span>
+                <span className="ml-auto px-3 py-1 bg-blue-100 text-[#0B2C5E] rounded-full text-sm">{t.home.testimonials.review3.service}</span>
               </div>
             </div>
           </div>
@@ -492,7 +492,7 @@ export default function HomeContent() {
           </p>
           <Link
             href="/register"
-            className="inline-block px-8 py-4 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium mb-4"
+            className="inline-block px-8 py-4 bg-[#F27405] text-white rounded-lg hover:bg-[#d96504] transition-colors font-medium mb-4"
           >
             {t.home.ctaBanner.cta}
           </Link>

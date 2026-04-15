@@ -84,15 +84,15 @@ export default function ContactPage() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <div className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm font-medium flex items-center">
+            <div className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full text-sm font-medium flex items-center">
               <Phone className="w-4 h-4 mr-2" />
               Réponse rapide
             </div>
-            <div className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm font-medium flex items-center">
+            <div className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full text-sm font-medium flex items-center">
               <Mail className="w-4 h-4 mr-2" />
               Email sous 24h
             </div>
-            <div className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm font-medium flex items-center">
+            <div className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full text-sm font-medium flex items-center">
               <span className="w-4 h-4 mr-2">📱</span>
               WhatsApp dispo
             </div>
@@ -110,7 +110,7 @@ export default function ContactPage() {
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <MapPin className="w-5 h-5 text-[#4A8B71] mr-4 mt-1 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-[#0B2C5E] mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-gray-900">Adresse</p>
                     <p className="text-gray-600">Casablanca, Maroc</p>
@@ -118,7 +118,7 @@ export default function ContactPage() {
                 </div>
                 
                 <div className="flex items-start">
-                  <Phone className="w-5 h-5 text-[#4A8B71] mr-4 mt-1 flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-[#0B2C5E] mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-gray-900">Téléphone</p>
                     <p className="text-gray-600">+212 6XX XXX XXX</p>
@@ -126,7 +126,7 @@ export default function ContactPage() {
                 </div>
                 
                 <div className="flex items-start">
-                  <Mail className="w-5 h-5 text-[#4A8B71] mr-4 mt-1 flex-shrink-0" />
+                  <Mail className="w-5 h-5 text-[#0B2C5E] mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
                     <p className="text-gray-600">contact@m3allamconnect.ma</p>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                 </div>
                 
                 <div className="flex items-start">
-                  <Clock className="w-5 h-5 text-[#4A8B71] mr-4 mt-1 flex-shrink-0" />
+                  <Clock className="w-5 h-5 text-[#0B2C5E] mr-4 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-gray-900">Horaires</p>
                     <p className="text-gray-600">Lun-Sam, 8h00 - 20h00</p>
@@ -143,12 +143,12 @@ export default function ContactPage() {
               </div>
               
               {/* Urgency note */}
-              <div className="bg-[#C2E0C6] border border-[#4A8B71] rounded-lg p-4 mt-8">
+              <div className="bg-blue-100 border border-[#0B2C5E] rounded-lg p-4 mt-8">
                 <div className="flex items-start">
-                  <AlertTriangle className="w-5 h-5 text-[#0B3B24] mr-3 mt-1 flex-shrink-0" />
+                  <AlertTriangle className="w-5 h-5 text-[#0B2C5E] mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-[#0B3B24]">Pour une urgence</p>
-                    <p className="text-[#0B3B24] text-sm">
+                    <p className="font-medium text-[#0B2C5E]">Pour une urgence</p>
+                    <p className="text-[#0B2C5E] text-sm">
                       Appelez directement le +212 6XX XXX XXX disponible 7j/7
                     </p>
                   </div>
@@ -159,16 +159,16 @@ export default function ContactPage() {
               <div className="mt-8">
                 <h4 className="font-medium text-gray-900 mb-4">Suivez-nous</h4>
                 <div className="flex space-x-3">
-                  <button className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center hover:bg-[#072a19] transition-colors">
+                  <button className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center hover:bg-[#081f45] transition-colors">
                     <span className="text-white text-sm">f</span>
                   </button>
-                  <button className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center hover:bg-[#072a19] transition-colors">
+                  <button className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center hover:bg-[#081f45] transition-colors">
                     <span className="text-white text-sm">ig</span>
                   </button>
-                  <button className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center hover:bg-[#072a19] transition-colors">
+                  <button className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center hover:bg-[#081f45] transition-colors">
                     <span className="text-white text-sm">w</span>
                   </button>
-                  <button className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center hover:bg-[#072a19] transition-colors">
+                  <button className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center hover:bg-[#081f45] transition-colors">
                     <span className="text-white text-sm">in</span>
                   </button>
                 </div>
@@ -191,7 +191,7 @@ export default function ContactPage() {
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                         required
                       />
                     </div>
@@ -205,7 +205,7 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                         required
                       />
                     </div>
@@ -219,7 +219,7 @@ export default function ContactPage() {
                           name="subject"
                           value={formData.subject}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71] appearance-none"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E] appearance-none"
                           required
                         >
                           <option value="">Sélectionnez un sujet</option>
@@ -241,7 +241,7 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         rows={6}
                         maxLength={500}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71] resize-none"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E] resize-none"
                         required
                       />
                       <div className="text-right text-sm text-gray-500 mt-1">
@@ -251,7 +251,7 @@ export default function ContactPage() {
                     
                     <button
                       type="submit"
-                      className="w-full py-3 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium flex items-center justify-center"
+                      className="w-full py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium flex items-center justify-center"
                     >
                       <Send className="w-5 h-5 mr-2" />
                       Envoyer le message

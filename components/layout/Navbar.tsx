@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Sparkles } from "lucide-react";
 import { useDictionary } from "@/hooks/useDictionary";
 
@@ -39,24 +40,16 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo avec animation */}
+          {/* Logo avec image */}
           <Link href="/" className="flex items-center group">
-            <div className="relative">
-              <span className="text-3xl font-black bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent animate-gradient bg-300%">
-                M3allam
-              </span>
-              <span className="absolute -top-1 -right-2 flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
-              </span>
-            </div>
-            <span
-              className={`ml-2 text-sm font-medium transition-colors duration-300 ${
-                isScrolled ? "text-emerald-800" : "text-emerald-600"
-              }`}
-            >
-              Connect
-            </span>
+            <Image 
+              src="/logo.jpeg" 
+              alt="M3allam Connect" 
+              width={180} 
+              height={65} 
+              className="h-16 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Navigation Desktop avec effets hover */}
@@ -67,12 +60,12 @@ export default function Navbar() {
                 href={link.href}
                 className={`relative px-4 py-2 text-lg font-bold transition-all duration-300 rounded-lg group ${
                   isScrolled
-                    ? "text-gray-800 hover:text-emerald-700 hover:bg-emerald-50"
-                    : "text-gray-800 hover:text-emerald-700 hover:bg-white/50"
+                    ? "text-[#4A4A4A] hover:text-[#0B2C5E] hover:bg-blue-50"
+                    : "text-[#4A4A4A] hover:text-[#0B2C5E] hover:bg-white/50"
                 }`}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-emerald-600 to-emerald-800 transition-all duration-300 group-hover:w-1/2 rounded-full"></span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-[#0B2C5E] to-[#0B2C5E] transition-all duration-300 group-hover:w-1/2 rounded-full"></span>
               </Link>
             ))}
           </div>
@@ -83,21 +76,21 @@ export default function Navbar() {
               href="/login"
               className={`px-5 py-2.5 text-base font-bold rounded-xl transition-all duration-300 ${
                 isScrolled
-                  ? "text-gray-800 hover:text-emerald-700 hover:bg-emerald-50"
-                  : "text-gray-800 hover:text-emerald-700 hover:bg-white/60 backdrop-blur-sm"
+                  ? "text-[#4A4A4A] hover:text-[#0B2C5E] hover:bg-blue-50"
+                  : "text-[#4A4A4A] hover:text-[#0B2C5E] hover:bg-white/60 backdrop-blur-sm"
               }`}
             >
               {t?.navigation?.login || "Se connecter"}
             </Link>
             <Link
               href="/register"
-              className="group relative px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-800 text-white text-base font-bold rounded-xl overflow-hidden shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 hover:-translate-y-0.5"
+              className="group relative px-5 py-2.5 bg-[#F27405] text-white text-base font-bold rounded-xl overflow-hidden shadow-lg hover:shadow-orange-500/30 transition-all duration-300 hover:-translate-y-0.5"
             >
               <span className="relative z-10 flex items-center gap-1">
-                <Sparkles className="w-4 h-4 animate-pulse text-emerald-100" />
+                <Sparkles className="w-4 h-4 animate-pulse text-white" />
                 {t?.navigation?.register || "S'inscrire"}
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 to-emerald-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-[#d96504] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
           </div>
 
@@ -127,7 +120,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={closeMenu}
-              className="block px-4 py-3 text-lg font-bold text-gray-800 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl transition-all duration-300"
+              className="block px-4 py-3 text-lg font-bold text-[#4A4A4A] hover:text-[#0B2C5E] hover:bg-blue-50 rounded-xl transition-all duration-300"
               style={{
                 animationDelay: `${index * 50}ms`,
               }}
@@ -140,14 +133,14 @@ export default function Navbar() {
             <Link
               href="/login"
               onClick={closeMenu}
-              className="block px-4 py-3 text-lg font-bold text-center text-gray-800 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl transition-all duration-300"
+              className="block px-4 py-3 text-lg font-bold text-center text-[#4A4A4A] hover:text-[#0B2C5E] hover:bg-blue-50 rounded-xl transition-all duration-300"
             >
               {t?.navigation?.login || "Se connecter"}
             </Link>
             <Link
               href="/register"
               onClick={closeMenu}
-              className="block px-4 py-3 text-lg font-bold text-center bg-gradient-to-r from-emerald-600 to-emerald-800 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="block px-4 py-3 text-lg font-bold text-center bg-[#F27405] text-white rounded-xl shadow-lg hover:shadow-xl hover:bg-[#d96504] transition-all duration-300"
             >
               <span className="flex items-center justify-center gap-2">
                 <Sparkles className="w-4 h-4" />

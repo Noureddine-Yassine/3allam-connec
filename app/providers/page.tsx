@@ -131,14 +131,14 @@ export default function ProvidersPage() {
                   placeholder="Entrez votre ville..."
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                  className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                 />
                 {city && (
                   <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg mt-1 shadow-lg z-10">
                     {cities.filter(c => c.toLowerCase().includes(city.toLowerCase())).map(c => (
                       <div
                         key={c}
-                        className="px-3 py-2 hover:bg-[#C2E0C6] cursor-pointer"
+                        className="px-3 py-2 hover:bg-blue-100 cursor-pointer"
                         onClick={() => setCity(c)}
                       >
                         {c}
@@ -152,7 +152,7 @@ export default function ProvidersPage() {
                 <select
                   value={service}
                   onChange={(e) => setService(e.target.value)}
-                  className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71] appearance-none"
+                  className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E] appearance-none"
                 >
                   {services.map(s => (
                     <option key={s} value={s}>{s}</option>
@@ -161,7 +161,7 @@ export default function ProvidersPage() {
                 <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
               </div>
               
-              <button className="bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium flex items-center justify-center">
+              <button className="bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium flex items-center justify-center">
                 <Search className="w-5 h-5 mr-2" />
                 Rechercher
               </button>
@@ -174,8 +174,8 @@ export default function ProvidersPage() {
                   onClick={() => toggleFilter(filter)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     activeFilters.includes(filter)
-                      ? "bg-[#0B3B24] text-white"
-                      : "bg-white border border-[#0B3B24] text-[#0B3B24] hover:bg-[#C2E0C6]"
+                      ? "bg-[#0B2C5E] text-white"
+                      : "bg-white border border-[#0B3B24] text-[#0B2C5E] hover:bg-blue-100"
                   }`}
                 >
                   {filter}
@@ -197,7 +197,7 @@ export default function ProvidersPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="pl-3 pr-8 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71] appearance-none"
+                className="pl-3 pr-8 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E] appearance-none"
               >
                 {sortOptions.map(option => (
                   <option key={option} value={option}>Trier par: {option}</option>
@@ -211,20 +211,20 @@ export default function ProvidersPage() {
             {providers.map(provider => (
               <div
                 key={provider.id}
-                className="bg-white border border-gray-200 rounded-xl p-5 hover:border-[#4A8B71] hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
+                className="bg-white border border-gray-200 rounded-xl p-5 hover:border-[#0B2C5E] hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
               >
                 <div className="flex items-start mb-4">
                   <div className="relative">
                     <div className="w-20 h-20 bg-gray-200 rounded-full border-2 border-gray-300"></div>
                     {provider.verified && (
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#0B2C5E] rounded-full flex items-center justify-center">
                         <CheckCircle className="w-4 h-4 text-white" />
                       </div>
                     )}
                   </div>
                   <div className="ml-4">
                     <h3 className="font-bold text-gray-900 text-lg">{provider.name}</h3>
-                    <p className="text-[#0B3B24] font-medium">{provider.skill}</p>
+                    <p className="text-[#0B2C5E] font-medium">{provider.skill}</p>
                   </div>
                 </div>
 
@@ -234,7 +234,7 @@ export default function ProvidersPage() {
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`w-4 h-4 ${i < Math.floor(provider.rating) ? 'text-[#4A8B71] fill-current' : 'text-gray-300'}`}
+                          className={`w-4 h-4 ${i < Math.floor(provider.rating) ? 'text-[#0B2C5E] fill-current' : 'text-gray-300'}`}
                         />
                       ))}
                     </div>
@@ -252,7 +252,7 @@ export default function ProvidersPage() {
 
                   <div className="flex flex-wrap gap-1">
                     {provider.skills.slice(0, 3).map((skill, i) => (
-                      <span key={i} className="px-2 py-1 border border-[#0B3B24] text-[#0B3B24] rounded-full text-xs">
+                      <span key={i} className="px-2 py-1 border border-[#0B3B24] text-[#0B2C5E] rounded-full text-xs">
                         {skill}
                       </span>
                     ))}
@@ -272,15 +272,15 @@ export default function ProvidersPage() {
                 <div className="space-y-3">
                   <div className={`w-full py-2 rounded-full text-center text-sm font-medium ${
                     provider.available
-                      ? "bg-green-100 text-green-700"
-                      : "bg-[#C2E0C6] text-[#0B3B24]"
+                      ? "bg-[#0B2C5E] text-white"
+                      : "bg-blue-100 text-[#0B2C5E]"
                   }`}>
                     {provider.available ? "Disponible" : "Occupé jusqu'au 12/04"}
                   </div>
                   
                   <Link
                     href={`/providers/${provider.id}`}
-                    className="block w-full py-3 border border-[#0B3B24] text-[#0B3B24] rounded-lg hover:bg-[#C2E0C6] transition-colors text-center font-medium"
+                    className="block w-full py-3 border border-[#0B3B24] text-[#0B2C5E] rounded-lg hover:bg-blue-100 transition-colors text-center font-medium"
                   >
                     Voir le profil
                   </Link>
@@ -298,7 +298,7 @@ export default function ProvidersPage() {
               <button className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50">
                 Précédent
               </button>
-              <button className="w-8 h-8 bg-[#0B3B24] text-white rounded-full">1</button>
+              <button className="w-8 h-8 bg-[#0B2C5E] text-white rounded-full">1</button>
               <button className="w-8 h-8 border border-gray-300 rounded-lg hover:bg-gray-50">2</button>
               <button className="w-8 h-8 border border-gray-300 rounded-lg hover:bg-gray-50">3</button>
               <span className="px-2">...</span>

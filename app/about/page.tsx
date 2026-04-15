@@ -45,7 +45,7 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Notre <span className="relative">
               mission
-              <span className="absolute bottom-0 left-0 w-full h-3 bg-[#4A8B71] opacity-30"></span>
+              <span className="absolute bottom-0 left-0 w-full h-3 bg-[#0B2C5E] opacity-30"></span>
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -83,13 +83,13 @@ export default function AboutPage() {
               </div>
               
               <div className="flex flex-wrap gap-3 mt-8">
-                <span className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full font-medium">
+                <span className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full font-medium">
                   2023 Fondation
                 </span>
-                <span className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full font-medium">
+                <span className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full font-medium">
                   2024 500 artisans
                 </span>
-                <span className="px-4 py-2 bg-[#C2E0C6] text-[#0B3B24] rounded-full font-medium">
+                <span className="px-4 py-2 bg-blue-100 text-[#0B2C5E] rounded-full font-medium">
                   2025 12 villes
                 </span>
               </div>
@@ -99,10 +99,10 @@ export default function AboutPage() {
               <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
                 <span className="text-gray-400 text-6xl">⭐</span>
               </div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#0B3B24] rounded-full flex items-center justify-center text-white font-bold text-xl">
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#0B2C5E] rounded-full flex items-center justify-center text-white font-bold text-xl">
                 500+
               </div>
-              <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-[#C2E0C6] rounded-full flex items-center justify-center text-[#0B3B24] font-bold">
+              <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-[#0B2C5E] font-bold">
                 12
               </div>
             </div>
@@ -118,8 +118,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div key={index} className="bg-white rounded-xl p-6 text-center card-lift">
-                <div className="w-16 h-16 bg-[#C2E0C6] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="w-8 h-8 text-[#4A8B71]" />
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <value.icon className="w-8 h-8 text-[#0B2C5E]" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
                 <p className="text-gray-600">{value.description}</p>
@@ -139,10 +139,10 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Pour les clients */}
             <div>
-              <h3 className="text-xl font-bold text-[#0B3B24] mb-6">Pour les clients</h3>
+              <h3 className="text-xl font-bold text-[#0B2C5E] mb-6">Pour les clients</h3>
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+                  <div className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
                     1
                   </div>
                   <div>
@@ -154,7 +154,7 @@ export default function AboutPage() {
                 </div>
                 
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+                  <div className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
                     2
                   </div>
                   <div>
@@ -166,7 +166,7 @@ export default function AboutPage() {
                 </div>
                 
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+                  <div className="w-10 h-10 bg-[#0B2C5E] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
                     3
                   </div>
                   <div>
@@ -231,13 +231,13 @@ export default function AboutPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cities.map((city, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 border border-[#B8CDD1] card-lift">
+              <div key={index} className="bg-white rounded-xl p-6 border border-[#0B2C5E] card-lift">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{city.name}</h3>
-                <p className="text-[#0B3B24] font-medium mb-3">{city.artisans} artisans</p>
+                <p className="text-[#0B2C5E] font-medium mb-3">{city.artisans} artisans</p>
                 <span className={`inline-flex px-3 py-1 rounded-full text-sm font-medium ${
                   city.status === "Disponible" 
-                    ? "bg-green-100 text-green-700" 
-                    : "bg-[#C2E0C6] text-[#0B3B24]"
+                    ? "bg-[#0B2C5E] text-white" 
+                    : "bg-blue-100 text-[#0B2C5E]"
                 }`}>
                   {city.status}
                 </span>
@@ -259,7 +259,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/request"
-              className="px-8 py-4 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium"
+              className="px-8 py-4 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
             >
               Demander un service
             </Link>

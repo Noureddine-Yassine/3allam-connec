@@ -38,18 +38,18 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-white flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* LOGIN CARD */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-8">
+        <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-lg">
           {/* TOP SECTION */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#0B2C5E] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">M</span>
               </div>
               <span className="text-xl font-bold text-gray-900">M3allam</span>
-              <span className="text-xl font-bold text-orange-500">Connect</span>
+              <span className="text-xl font-bold text-[#F27405]">Connect</span>
             </div>
             
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Connexion M3allam</h2>
@@ -81,7 +81,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="votre@email.com"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                 />
               </div>
             </div>
@@ -97,12 +97,12 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="password"
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-[#0B2C5E]"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -115,14 +115,14 @@ export default function LoginPage() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 text-orange-500 border-gray-300 rounded focus:ring-orange-500"
+                  className="w-4 h-4 text-[#0B2C5E] border-gray-300 rounded focus:ring-[#0B2C5E]"
                 />
                 <span className="ml-2 text-sm text-gray-700">Se souvenir de moi</span>
               </label>
               
               <a
                 href="#"
-                className="text-sm text-orange-500 hover:text-orange-600 font-medium"
+                className="text-sm text-[#0B2C5E] hover:text-[#0B2C5E] font-medium"
               >
                 Mot de passe oublié?
               </a>
@@ -130,7 +130,7 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium"
+              className="w-full py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
             >
               Se connecter
             </button>
@@ -170,14 +170,14 @@ export default function LoginPage() {
             </p>
             <Link
               href="/register"
-              className="text-orange-500 hover:text-orange-600 font-medium"
+              className="text-[#0B2C5E] hover:text-[#0B2C5E] font-medium"
             >
               Créer mon compte gratuitement
             </Link>
             
             <p className="text-xs text-gray-400 mt-6">
               Vous êtes administrateur?{' '}
-              <Link href="/admin" className="text-gray-500 hover:text-gray-700">
+              <Link href="/admin" className="text-gray-500 hover:text-[#0B2C5E]">
                 Accès ici
               </Link>
             </p>

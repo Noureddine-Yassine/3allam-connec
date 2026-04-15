@@ -20,11 +20,11 @@ const Footer = () => {
           {/* Column 1 - Logo & Description */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-[#0B3B24] rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#0B2C5E] rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">M</span>
               </div>
               <span className="text-xl font-bold">M3allam</span>
-              <span className="text-xl font-bold text-[#C2E0C6]">Connect</span>
+              <span className="text-xl font-bold text-[#F27405]">Connect</span>
             </div>
             <p className="text-gray-300 text-sm">
               La plateforme N°1 au Maroc pour trouver des artisans qualifiés et vérifiés pour tous vos besoins à domicile.
@@ -42,7 +42,7 @@ const Footer = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-gray-300 hover:text-[#C2E0C6] transition-colors"
+                  className="text-gray-300 hover:text-[#F27405] transition-colors"
                 >
                   {link.name}
                 </Link>

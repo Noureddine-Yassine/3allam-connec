@@ -110,7 +110,7 @@ export default function RegisterPage() {
       <div className="flex flex-col">
         <div className="hero-gradient py-16 px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="w-20 h-20 bg-[#0B3B24] rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+            <div className="w-20 h-20 bg-[#0B2C5E] rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
               <CheckCircle className="w-10 h-10 text-white" />
             </div>
             
@@ -124,15 +124,15 @@ export default function RegisterPage() {
               <h3 className="font-bold text-gray-900 mb-4">Prochaines étapes:</h3>
               <div className="space-y-3 text-left">
                 <div className="flex items-center">
-                  <span className="w-8 h-8 bg-[#0B3B24] text-white rounded-full flex items-center justify-center font-bold mr-3">1</span>
+                  <span className="w-8 h-8 bg-[#0B2C5E] text-white rounded-full flex items-center justify-center font-bold mr-3">1</span>
                   <span>Vérification de vos documents</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="w-8 h-8 bg-[#0B3B24] text-white rounded-full flex items-center justify-center font-bold mr-3">2</span>
+                  <span className="w-8 h-8 bg-[#0B2C5E] text-white rounded-full flex items-center justify-center font-bold mr-3">2</span>
                   <span>Activation de votre compte</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="w-8 h-8 bg-[#0B3B24] text-white rounded-full flex items-center justify-center font-bold mr-3">3</span>
+                  <span className="w-8 h-8 bg-[#0B2C5E] text-white rounded-full flex items-center justify-center font-bold mr-3">3</span>
                   <span>Réception de vos premières demandes</span>
                 </div>
               </div>
@@ -140,14 +140,14 @@ export default function RegisterPage() {
             
             <Link
               href="/"
-              className="inline-block px-8 py-3 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium"
+              className="inline-block px-8 py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
             >
               Retour à l'accueil
             </Link>
             
             <p className="text-gray-500 text-sm mt-4">
               Des questions?{' '}
-              <Link href="/contact" className="text-[#0B3B24] hover:text-[#4A8B71]">
+              <Link href="/contact" className="text-[#0B2C5E] hover:text-[#0B2C5E]">
                 Contactez-nous
               </Link>
             </p>
@@ -168,13 +168,13 @@ export default function RegisterPage() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <div className="px-4 py-2 border border-[#0B3B24] text-[#0B3B24] rounded-full text-sm font-medium">
+            <div className="px-4 py-2 border border-[#0B2C5E] text-[#0B2C5E] rounded-full text-sm font-medium">
               Gratuit
             </div>
-            <div className="px-4 py-2 border border-[#0B3B24] text-[#0B3B24] rounded-full text-sm font-medium">
+            <div className="px-4 py-2 border border-[#0B2C5E] text-[#0B2C5E] rounded-full text-sm font-medium">
               Validé sous 24h
             </div>
-            <div className="px-4 py-2 border border-[#0B3B24] text-[#0B3B24] rounded-full text-sm font-medium">
+            <div className="px-4 py-2 border border-[#0B2C5E] text-[#0B2C5E] rounded-full text-sm font-medium">
               Clients directs
             </div>
           </div>
@@ -191,7 +191,7 @@ export default function RegisterPage() {
                   <div
                     className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-colors ${
                       currentStep >= step.number
-                        ? 'bg-[#0B3B24] text-white'
+                        ? 'bg-[#0B2C5E] text-white'
                         : 'bg-gray-200 text-gray-600'
                     }`}
                   >
@@ -203,7 +203,7 @@ export default function RegisterPage() {
                   </div>
                   <span
                     className={`text-sm mt-2 font-medium ${
-                      currentStep >= step.number ? 'text-[#0B3B24]' : 'text-gray-600'
+                      currentStep >= step.number ? 'text-[#0B2C5E]' : 'text-gray-600'
                     }`}
                   >
                     {step.label}
@@ -213,7 +213,7 @@ export default function RegisterPage() {
                 {index < steps.length - 1 && (
                   <div
                     className={`w-16 h-1 mx-4 transition-colors ${
-                      currentStep > step.number ? 'bg-[#0B3B24]' : 'bg-gray-200'
+                      currentStep > step.number ? 'bg-[#0B2C5E]' : 'bg-gray-200'
                     }`}
                   />
                 )}
@@ -232,7 +232,7 @@ export default function RegisterPage() {
               <div className="space-y-6">
                 <h3 className="text-xl font-bold text-gray-900 relative">
                   Informations personnelles
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-[#4A8B71]"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
                 </h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -245,7 +245,7 @@ export default function RegisterPage() {
                       name="fullName"
                       value={formData.fullName}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     />
                   </div>
                   
@@ -262,7 +262,7 @@ export default function RegisterPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full pl-16 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                        className="w-full pl-16 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                       />
                     </div>
                   </div>
@@ -276,7 +276,7 @@ export default function RegisterPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     />
                   </div>
                   
@@ -288,7 +288,7 @@ export default function RegisterPage() {
                       name="city"
                       value={formData.city}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     >
                       <option value="">Sélectionnez une ville</option>
                       {cities.map(city => (
@@ -305,7 +305,7 @@ export default function RegisterPage() {
                       name="experience"
                       value={formData.experience}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     >
                       <option value="">Sélectionnez</option>
                       {experienceLevels.map(level => (
@@ -324,7 +324,7 @@ export default function RegisterPage() {
                         name="rate"
                         value={formData.rate}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 pr-16 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                        className="w-full px-4 py-3 pr-16 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                       />
                       <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
                         MAD/h
@@ -335,7 +335,7 @@ export default function RegisterPage() {
                 
                 <button
                   onClick={nextStep}
-                  className="w-full py-3 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium"
+                  className="w-full py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
                 >
                   Suivant
                 </button>
@@ -348,7 +348,7 @@ export default function RegisterPage() {
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-6 relative">
                     Sélectionnez vos services *
-                    <span className="absolute bottom-0 left-0 w-full h-1 bg-[#4A8B71]"></span>
+                    <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
                   </h3>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -357,7 +357,7 @@ export default function RegisterPage() {
                         key={service.id}
                         className={`flex items-center p-4 border rounded-xl cursor-pointer transition-colors ${
                           formData.services.includes(service.id)
-                            ? 'border-[#0B3B24] bg-[#C2E0C6]'
+                            ? 'border-[#0B2C5E] bg-[#0B2C5E]'
                             : 'border-gray-200 bg-white'
                         }`}
                       >
@@ -365,7 +365,7 @@ export default function RegisterPage() {
                           type="checkbox"
                           checked={formData.services.includes(service.id)}
                           onChange={() => handleServiceToggle(service.id)}
-                          className="w-5 h-5 text-[#0B3B24] border-gray-300 rounded focus:ring-[#4A8B71] mr-3"
+                          className="w-5 h-5 text-[#0B2C5E] border-gray-300 rounded focus:ring-[#0B2C5E] mr-3"
                         />
                         <span className="text-2xl mr-3">{service.icon}</span>
                         <span className="font-medium">{service.name}</span>
@@ -385,7 +385,7 @@ export default function RegisterPage() {
                     placeholder="Décrivez votre expérience, vos certifications, et votre façon de travailler avec les clients..."
                     rows={5}
                     maxLength={400}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71] resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E] resize-none"
                   />
                   <div className="text-right text-sm text-gray-500 mt-1">
                     {formData.bio.length} / 400
@@ -402,7 +402,7 @@ export default function RegisterPage() {
                     value={formData.workArea}
                     onChange={handleInputChange}
                     placeholder="Ex: Casablanca, Ain Diab, Maarif, Hay Hassani..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4A8B71]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                   />
                 </div>
                 
@@ -415,7 +415,7 @@ export default function RegisterPage() {
                   </button>
                   <button
                     onClick={nextStep}
-                    className="flex-1 py-3 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium"
+                    className="flex-1 py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
                   >
                     Suivant
                   </button>
@@ -428,7 +428,7 @@ export default function RegisterPage() {
               <div className="space-y-6">
                 <h3 className="text-xl font-bold text-gray-900 relative">
                   Documents
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-[#4A8B71]"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
                 </h3>
                 
                 {/* Photo de profil */}
@@ -438,11 +438,11 @@ export default function RegisterPage() {
                   </label>
                   <div
                     onClick={() => profilePhotoRef.current?.click()}
-                    className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-[#4A8B71] transition-colors"
+                    className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-[#0B2C5E] transition-colors"
                   >
                     {formData.profilePhoto ? (
                       <div className="space-y-4">
-                        <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto border-4 border-[#0B3B24]"></div>
+                        <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto border-4 border-[#0B2C5E]"></div>
                         <p className="text-sm text-gray-600">{formData.profilePhoto.name}</p>
                         <button
                           type="button"
@@ -450,7 +450,7 @@ export default function RegisterPage() {
                             e.stopPropagation();
                             setFormData(prev => ({ ...prev, profilePhoto: null }));
                           }}
-                          className="text-[#0B3B24] hover:text-[#4A8B71] text-sm"
+                          className="text-[#0B2C5E] hover:text-[#0B2C5E] text-sm"
                         >
                           Changer
                         </button>
@@ -481,15 +481,15 @@ export default function RegisterPage() {
                   </label>
                   <div
                     onClick={() => cinDocumentRef.current?.click()}
-                    className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-[#4A8B71] transition-colors"
+                    className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-[#0B2C5E] transition-colors"
                   >
                     {formData.cinDocument ? (
                       <div className="space-y-4">
-                        <FileText className="w-12 h-12 text-green-500 mx-auto" />
+                        <FileText className="w-12 h-12 text-[#0B2C5E] mx-auto" />
                         <p className="text-sm text-gray-600">{formData.cinDocument.name}</p>
                         <div className="flex items-center justify-center">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                          <span className="text-green-600 text-sm">Document ajouté</span>
+                          <CheckCircle className="w-5 h-5 text-[#0B2C5E] mr-2" />
+                          <span className="text-[#0B2C5E] text-sm">Document ajouté</span>
                         </div>
                       </div>
                     ) : (
@@ -515,21 +515,21 @@ export default function RegisterPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Certificat professionnel
-                    <span className="ml-2 px-2 py-1 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-xs">
+                    <span className="ml-2 px-2 py-1 bg-[#0B2C5E] text-white rounded-full text-xs">
                       OPTIONNEL
                     </span>
                   </label>
                   <div
                     onClick={() => certificateRef.current?.click()}
-                    className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-[#4A8B71] transition-colors"
+                    className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-[#0B2C5E] transition-colors"
                   >
                     {formData.certificate ? (
                       <div className="space-y-4">
-                        <Award className="w-12 h-12 text-green-500 mx-auto" />
+                        <Award className="w-12 h-12 text-[#0B2C5E] mx-auto" />
                         <p className="text-sm text-gray-600">{formData.certificate.name}</p>
                         <div className="flex items-center justify-center">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                          <span className="text-green-600 text-sm">Document ajouté</span>
+                          <CheckCircle className="w-5 h-5 text-[#0B2C5E] mr-2" />
+                          <span className="text-[#0B2C5E] text-sm">Document ajouté</span>
                         </div>
                       </div>
                     ) : (
@@ -552,10 +552,10 @@ export default function RegisterPage() {
                 </div>
                 
                 {/* Security info */}
-                <div className="bg-[#C2E0C6] border-l-4 border-[#0B3B24] p-4 rounded-lg">
+                <div className="bg-[#0B2C5E] border-l-4 border-[#0B2C5E] p-4 rounded-lg">
                   <div className="flex items-start">
-                    <span className="text-[#0B3B24] mr-3">🔒</span>
-                    <p className="text-[#0B3B24] text-sm">
+                    <span className="text-white mr-3">🔒</span>
+                    <p className="text-white text-sm">
                       Vos documents sont chiffrés et utilisés uniquement pour la vérification de votre identité. Jamais partagés.
                     </p>
                   </div>
@@ -570,7 +570,7 @@ export default function RegisterPage() {
                   </button>
                   <button
                     onClick={handleSubmit}
-                    className="flex-1 py-3 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium"
+                    className="flex-1 py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
                   >
                     Soumettre
                   </button>

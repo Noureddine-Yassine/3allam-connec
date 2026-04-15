@@ -18,6 +18,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "M3allam Connect - Plateforme N°1 des artisans au Maroc",
   description: "Trouvez des artisans qualifiés et vérifiés pour tous vos besoins à domicile, partout au Maroc.",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
 };
 
 export default function RootLayout({

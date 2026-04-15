@@ -1,13 +1,27 @@
 "use client";
 
 import * as THREE from 'three'
-import { useRef, useState, useMemo } from 'react'
+import { useRef, useState, useMemo, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Image, Environment, useTexture } from '@react-three/drei'
 import { easing } from 'maath'
 import './utils'
 
 export default function ServiceCarousel3D() {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full h-full relative" style={{ touchAction: 'none' }}>
       <Canvas camera={{ position: [0, 0, 100], fov: 15 }} className="fade-in-canvas">

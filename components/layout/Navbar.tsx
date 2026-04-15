@@ -43,7 +43,7 @@ export default function Navbar() {
           {/* Logo avec image */}
           <Link href="/" className="flex items-center group">
             <Image 
-              src="/logo.jpeg" 
+              src="/logo.png" 
               alt="M3allam Connect" 
               width={180} 
               height={65} 

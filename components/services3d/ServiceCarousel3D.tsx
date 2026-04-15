@@ -139,8 +139,8 @@ function Banner(props: any) {
       
       // Créer un gradient pour le texte avec les couleurs M3allam
       const gradient = ctx.createLinearGradient(0, 0, textWidth, 0)
-      gradient.addColorStop(0, '#0B3B24') // Vert foncé M3allam
-      gradient.addColorStop(1, '#4A8B71') // Vert clair M3allam
+      gradient.addColorStop(0, '#F27405') // Orange M3allam
+      gradient.addColorStop(1, '#d96504') // Orange foncé M3allam
       
       // Texte avec gradient M3allam
       ctx.fillStyle = gradient

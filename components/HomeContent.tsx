@@ -82,7 +82,13 @@ export default function HomeContent() {
   return (
     <div className="flex flex-col">
       {/* HERO SECTION */}
-      <section className="pt-4 pb-20 px-4 overflow-hidden relative bg-transparent">
+      <section 
+        className="pt-4 pb-20 px-4 overflow-hidden relative"
+        style={{
+          background: 'linear-gradient(90deg, #FFFFFF 55%, #FDF0E0 100%)'
+        }}
+      >
+        
         {/* Language Switcher */}
         <div className="absolute top-4 right-4 z-20">
           <LanguageSwitcher />
@@ -94,11 +100,11 @@ export default function HomeContent() {
             {/* Left side (Text) */}
             <div className="lg:w-1/2 text-center lg:text-left z-10 flex flex-col items-center lg:items-start">
               {/* Badge N°1 Platform - Micro-branding */}
-              <div className="inline-flex items-center px-4 py-2 bg-blue-50/50 text-[#0B2C5E] rounded-full text-xs font-bold border border-blue-200 backdrop-blur-sm animate-pulse mb-8 shadow-sm relative overflow-hidden">
+              <div className="inline-flex items-center px-4 py-2 bg-orange-50/80 text-[#F27405] rounded-full text-xs font-bold border border-orange-200 backdrop-blur-sm animate-pulse mb-8 shadow-sm relative overflow-hidden">
                 {/* Animated gradient border */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0B2C5E]/20 via-[#0B2C5E]/30 to-[#0B2C5E]/20 animate-spin-slow"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#F27405]/20 via-[#F27405]/30 to-[#F27405]/20 animate-spin-slow"></div>
                 <div className="relative flex items-center">
-                  <TrendingUp className="w-4 h-4 mr-2 text-[#0B2C5E]" />
+                  <TrendingUp className="w-4 h-4 mr-2 text-[#F27405]" />
                   {t.home.hero.badge}
                 </div>
               </div>
@@ -109,7 +115,7 @@ export default function HomeContent() {
                   <span key={index}>
                     {part}
                     {index === 0 && (
-                      <span className="bg-gradient-to-r from-[#0B2C5E] to-[#0B2C5E] bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-[#F27405] to-[#d96504] bg-clip-text text-transparent">
                         M3allam
                       </span>
                     )}
@@ -195,15 +201,7 @@ export default function HomeContent() {
       </section>
 
       {/* SERVICES SECTION - BENTO BOX */}
-      <section id="services" className="py-20 px-4 bg-gradient-to-br from-[#B8CDD1] to-[#A8C5C9] relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, #0B2C5E 0%, transparent 50%),
-                             radial-gradient(circle at 80% 80%, #0B2C5E 0%, transparent 50%),
-                             radial-gradient(circle at 40% 20%, #E8F4FD 0%, transparent 50%)`
-          }}></div>
-        </div>
+      <section id="services" className="py-20 px-4 bg-[#FFF9F5] relative overflow-hidden">
         
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
@@ -293,8 +291,8 @@ export default function HomeContent() {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm border border-blue-200/50 rounded-full text-[#0B2C5E] text-sm font-medium mb-6 shadow-sm">
-              <CheckCircle className="w-4 h-4 mr-2 text-[#0B2C5E]" />
+            <div className="inline-flex items-center px-4 py-2 bg-orange-50/80 backdrop-blur-sm border border-orange-200/50 rounded-full text-[#F27405] text-sm font-medium mb-6 shadow-sm">
+              <CheckCircle className="w-4 h-4 mr-2 text-[#F27405]" />
               Processus Simple
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
@@ -324,8 +322,8 @@ export default function HomeContent() {
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#0B2C5E" />
-                  <stop offset="100%" stopColor="#0B2C5E" />
+                  <stop offset="0%" stopColor="#F27405" />
+                  <stop offset="100%" stopColor="#d96504" />
                 </linearGradient>
               </defs>
             </svg>
@@ -334,25 +332,25 @@ export default function HomeContent() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
               {[
                 { 
-                  icon: <Search className="w-8 h-8 text-[#0B2C5E] animate-search-sweep" />, 
+                  icon: <Search className="w-8 h-8 text-[#F27405] animate-search-sweep" />, 
                   step: "01", 
                   title: t.home.howItWorks.step1.title, 
                   description: t.home.howItWorks.step1.description,
-                  color: "from-[#0B2C5E] to-[#0B2C5E]"
+                  color: "from-[#F27405] to-[#d96504]"
                 },
                 { 
-                  icon: <Edit className="w-8 h-8 text-blue-600 animate-pencil-write" />, 
+                  icon: <Edit className="w-8 h-8 text-[#F27405] animate-pencil-write" />, 
                   step: "02", 
                   title: t.home.howItWorks.step2.title, 
                   description: t.home.howItWorks.step2.description,
-                  color: "from-blue-500 to-blue-600"
+                  color: "from-[#F27405] to-[#d96504]"
                 },
                 { 
-                  icon: <Phone className="w-8 h-8 text-purple-600 animate-phone-shake" />, 
+                  icon: <Phone className="w-8 h-8 text-[#F27405] animate-phone-shake" />, 
                   step: "03", 
                   title: t.home.howItWorks.step3.title, 
                   description: t.home.howItWorks.step3.description,
-                  color: "from-purple-500 to-purple-600"
+                  color: "from-[#F27405] to-[#d96504]"
                 }
               ].map((item, index) => (
                 <div 

@@ -41,7 +41,10 @@ function Rig(props: any) {
     // Appliquer la rotation combinée avec un adoucissement (easing)
     easing.damp(ref.current.rotation, 'y', targetRotation, 0.25, delta)
     
-    state.events.update() // Raycasts every frame rather than on pointer-move
+    // Raycasts every frame rather than on pointer-move
+    if (state.events && typeof state.events.update === 'function') {
+      state.events.update()
+    }
     easing.damp3(state.camera.position, [-(state.pointer?.x || 0) * 2, (state.pointer?.y || 0) + 1.5, 12], 0.3, delta) // Move camera further back to reduce size
     state.camera.lookAt(0, 0, 0) // Look at center
   })

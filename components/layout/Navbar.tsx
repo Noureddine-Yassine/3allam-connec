@@ -72,12 +72,12 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo avec image */}
           <Link href="/" className="flex items-center group">
-            <Image 
-              src="/logo2.png" 
-              alt="M3allam Connect" 
-              width={400} 
-              height={200} 
-              className="h-18  w-auto object-contain"
+            <Image
+              src="/Logo2.png"
+              alt="M3allam Connect"
+              width={400}
+              height={120}
+              className="h-12 sm:h-14 w-auto object-contain"
               priority
             />
           </Link>

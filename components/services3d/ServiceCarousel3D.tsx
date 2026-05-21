@@ -30,8 +30,9 @@ export default function ServiceCarousel3D() {
           <Carousel />
         </Rig>
         <Banner position={[0, -0.15, 0]} />
-        {/* Adjusted environment preset for better match with overall theme */}
-        <Environment preset="city" background={false} />
+        {/* Basic ambient lighting instead of environment HDR to avoid loading issues */}
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
       </Canvas>
     </div>
   )

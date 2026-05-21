@@ -12,19 +12,19 @@ export default function AdminLoginPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    
+
     // Basic validation
     if (!email || !password) {
       setError("Veuillez remplir tous les champs");
       return;
     }
-    
+
     // Email validation
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Identifiants incorrects. Réessayez.");
       return;
     }
-    
+
     // Simulate admin login attempt
     // In a real app, this would be an API call
     if (email === "admin@m3allamconnect.ma" && password === "admin123") {
@@ -49,16 +49,16 @@ export default function AdminLoginPage() {
               <span className="text-xl font-bold text-gray-900">M3allam</span>
               <span className="text-xl font-bold text-orange-500">Connect</span>
             </div>
-            
+
             <div className="inline-flex px-3 py-1 bg-red-600 text-white rounded-full text-sm font-bold mb-4">
               ADMIN
             </div>
-            
+
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Espace Administrateur</h2>
             <p className="text-gray-600 text-sm">
               Accès réservé à l'équipe M3allam Connect
             </p>
-            
+
             <div className="border-t border-gray-200 mt-6"></div>
           </div>
 
@@ -127,14 +127,14 @@ export default function AdminLoginPage() {
             >
               Mot de passe oublié?
             </a>
-            
+
             <div className="mt-6 pt-6 border-t border-gray-200">
               <p className="text-gray-400 text-xs">
                 M3allam Connect Admin Panel © 2025
               </p>
             </div>
           </div>
-          
+
           {/* SECURITY NOTE */}
           <div className="text-center mt-6">
             <p className="text-gray-400 text-xs flex items-center justify-center">

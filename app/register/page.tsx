@@ -3,6 +3,8 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { Upload, X, CheckCircle, User, Briefcase, FileText, Award, ArrowLeft, ArrowRight } from "lucide-react";
+import { authApi } from "@/lib/api";
+import { toE212Phone, isValidE212Mobile } from "@/lib/moroccoPhone";
 
 export default function RegisterPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -10,6 +12,7 @@ export default function RegisterPage() {
     fullName: "",
     phone: "",
     email: "",
+    password: "",
     city: "",
     experience: "",
     rate: "",
@@ -20,7 +23,7 @@ export default function RegisterPage() {
     cinDocument: null as File | null,
     certificate: null as File | null
   });
-  
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const profilePhotoRef = useRef<HTMLInputElement>(null);
   const cinDocumentRef = useRef<HTMLInputElement>(null);
@@ -80,29 +83,143 @@ export default function RegisterPage() {
     if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Validation
-    if (currentStep === 1 && (!formData.fullName || !formData.phone || !formData.email || !formData.city)) {
+    if (currentStep === 1 && (!formData.fullName || !formData.phone || !formData.email || !formData.password || !formData.city)) {
       alert('Veuillez remplir tous les champs obligatoires');
       return;
     }
-    
+
+    // Password validation
+    if (currentStep === 1 && formData.password.length < 6) {
+      alert('Le mot de passe doit contenir au moins 6 caractères');
+      return;
+    }
+
+    // Email format validation
+    if (currentStep === 1 && formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      alert('Veuillez entrer une adresse email valide');
+      return;
+    }
+
+    // Phone format validation
+    if (currentStep === 1) {
+      const phone = toE212Phone(formData.phone);
+      if (!isValidE212Mobile(phone)) {
+        alert(
+          "Veuillez entrer un numéro marocain valide (ex. 06 XX XX XX XX ou 6 XX XX XX XX)"
+        );
+        return;
+      }
+    }
+
     if (currentStep === 2 && (formData.services.length === 0 || !formData.bio)) {
       alert('Veuillez sélectionner au moins un service et remplir votre présentation');
       return;
     }
-    
+
     if (currentStep === 3 && (!formData.profilePhoto || !formData.cinDocument)) {
       alert('Veuillez télécharger votre photo de profil et votre CIN');
       return;
     }
-    
+
     if (currentStep === 3) {
-      setIsSubmitted(true);
-      setCurrentStep(4);
+      // Submit to backend using proper multipart format
+      try {
+        const formDataToSend = new FormData();
+
+        const phone = toE212Phone(formData.phone);
+
+        // Backend expects a JSON "data" part matching ProviderRegisterDTO
+        const dataPayload = {
+          firstName: formData.fullName.split(' ')[0] || formData.fullName,
+          lastName: formData.fullName.split(' ').slice(1).join(' ') || formData.fullName,
+          phone: phone,
+          email: formData.email,
+          password: formData.password,
+          city: formData.city.toUpperCase().replace('È', 'E').replace('É', 'E'),
+          yearsOfExperience: formData.experience === "Moins d'1 an" ? 'LESS_THAN_1' :
+                             formData.experience === '1-3 ans' ? 'ONE_TO_3' :
+                             formData.experience === '3-5 ans' ? 'THREE_TO_5' :
+                             formData.experience === '5-10 ans' ? 'FIVE_TO_10' :
+                             formData.experience === 'Plus de 10 ans' ? 'MORE_THAN_10' : 'ONE_TO_3',
+          hourlyRate: formData.rate ? parseFloat(formData.rate) : null,
+          bio: formData.bio,
+          interventionZone: formData.workArea || null,
+          services: formData.services.map((s: string) => s.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace('É', 'E')),
+        };
+        formDataToSend.append('data', JSON.stringify(dataPayload));
+
+        // Add files as separate parts
+        if (formData.profilePhoto) {
+          formDataToSend.append('profilePhoto', formData.profilePhoto);
+        }
+        if (formData.cinDocument) {
+          formDataToSend.append('cinDocument', formData.cinDocument);
+        }
+        if (formData.certificate) {
+          formDataToSend.append('certificate', formData.certificate);
+        }
+
+        console.log('Submitting registration data:', dataPayload);
+        
+        const response = await authApi.providerRegister(
+          dataPayload,
+          formData.profilePhoto,
+          formData.cinDocument,
+          formData.certificate
+        );
+        
+        console.log('Registration response:', response);
+
+        if (response.token || response.access_token) {
+          console.log('Registration successful:', response);
+          setIsSubmitted(true);
+          setCurrentStep(4);
+        } else {
+          const error = response;
+          let errorMessage = 'Erreur lors de l\'inscription';
+          
+          if (error.status === 409) {
+            errorMessage = 'Un compte avec cet email ou ce numéro de téléphone existe déjà';
+          } else if (error.status === 400) {
+            if (error.message && error.message.includes('email')) {
+              errorMessage = 'Cet email est déjà utilisé';
+            } else if (error.message && error.message.includes('phone')) {
+              errorMessage = 'Ce numéro de téléphone est déjà utilisé';
+            } else if (error.message && error.message.includes('password')) {
+              errorMessage = 'Le mot de passe doit contenir au moins 6 caractères';
+            } else {
+              errorMessage = error.message || 'Données invalides';
+            }
+          } else {
+            errorMessage = error.message || 'Erreur inconnue';
+          }
+          
+          alert(errorMessage);
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+        alert('Erreur lors de l\'inscription. Veuillez réessayer.');
+      }
     } else {
       nextStep();
     }
+  };
+
+  // Helper function to convert file to base64
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const result = reader.result as string;
+        // Remove the data URL prefix (e.g., "data:image/jpeg;base64,")
+        const base64 = result.split(',')[1];
+        resolve(base64);
+      };
+      reader.onerror = error => reject(error);
+    });
   };
 
   if (isSubmitted && currentStep === 4) {
@@ -113,13 +230,13 @@ export default function RegisterPage() {
             <div className="w-20 h-20 bg-[#0B2C5E] rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
               <CheckCircle className="w-10 h-10 text-white" />
             </div>
-            
+
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Dossier soumis avec succès!</h1>
             <p className="text-gray-600 mb-8">
-              Notre équipe vérifie votre dossier dans les 24 à 48 heures. 
+              Notre équipe vérifie votre dossier dans les 24 à 48 heures.
               Vous recevrez un email dès l'activation.
             </p>
-            
+
             <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
               <h3 className="font-bold text-gray-900 mb-4">Prochaines étapes:</h3>
               <div className="space-y-3 text-left">
@@ -137,14 +254,14 @@ export default function RegisterPage() {
                 </div>
               </div>
             </div>
-            
+
             <Link
               href="/"
               className="inline-block px-8 py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
             >
               Retour à l'accueil
             </Link>
-            
+
             <p className="text-gray-500 text-sm mt-4">
               Des questions?{' '}
               <Link href="/contact" className="text-[#0B2C5E] hover:text-[#0B2C5E]">
@@ -166,7 +283,7 @@ export default function RegisterPage() {
           <p className="text-gray-600 mb-6">
             Inscription gratuite - Validation sous 24h - Clients garantis
           </p>
-          
+
           <div className="flex flex-wrap justify-center gap-4">
             <div className="px-4 py-2 border border-[#0B2C5E] text-[#0B2C5E] rounded-full text-sm font-medium">
               Gratuit
@@ -189,11 +306,10 @@ export default function RegisterPage() {
               <div key={step.number} className="flex items-center">
                 <div className="flex flex-col items-center">
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-colors ${
-                      currentStep >= step.number
+                    className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-colors ${currentStep >= step.number
                         ? 'bg-[#0B2C5E] text-white'
                         : 'bg-gray-200 text-gray-600'
-                    }`}
+                      }`}
                   >
                     {currentStep > step.number ? (
                       <CheckCircle className="w-6 h-6" />
@@ -202,19 +318,17 @@ export default function RegisterPage() {
                     )}
                   </div>
                   <span
-                    className={`text-sm mt-2 font-medium ${
-                      currentStep >= step.number ? 'text-[#0B2C5E]' : 'text-gray-600'
-                    }`}
+                    className={`text-sm mt-2 font-medium ${currentStep >= step.number ? 'text-[#0B2C5E]' : 'text-gray-600'
+                      }`}
                   >
                     {step.label}
                   </span>
                 </div>
-                
+
                 {index < steps.length - 1 && (
                   <div
-                    className={`w-16 h-1 mx-4 transition-colors ${
-                      currentStep > step.number ? 'bg-[#0B2C5E]' : 'bg-gray-200'
-                    }`}
+                    className={`w-16 h-1 mx-4 transition-colors ${currentStep > step.number ? 'bg-[#0B2C5E]' : 'bg-gray-200'
+                      }`}
                   />
                 )}
               </div>
@@ -234,7 +348,7 @@ export default function RegisterPage() {
                   Informations personnelles
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
                 </h3>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -248,7 +362,7 @@ export default function RegisterPage() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Téléphone *
@@ -262,11 +376,12 @@ export default function RegisterPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
+                        placeholder="6 ou 06 XX XX XX XX"
                         className="w-full pl-16 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Adresse email *
@@ -279,7 +394,21 @@ export default function RegisterPage() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                     />
                   </div>
-                  
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Mot de passe *
+                    </label>
+                    <input
+                      type="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                      placeholder="Minimum 6 caractères"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
+                    />
+                  </div>
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Ville d'intervention *
@@ -296,7 +425,7 @@ export default function RegisterPage() {
                       ))}
                     </select>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Années d'expérience
@@ -313,7 +442,7 @@ export default function RegisterPage() {
                       ))}
                     </select>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Tarif horaire
@@ -332,7 +461,7 @@ export default function RegisterPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <button
                   onClick={nextStep}
                   className="w-full py-3 bg-[#0B2C5E] text-white rounded-lg hover:bg-[#081f45] transition-colors font-medium"
@@ -350,16 +479,15 @@ export default function RegisterPage() {
                     Sélectionnez vos services *
                     <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
                   </h3>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     {services.map(service => (
                       <label
                         key={service.id}
-                        className={`flex items-center p-4 border rounded-xl cursor-pointer transition-colors ${
-                          formData.services.includes(service.id)
+                        className={`flex items-center p-4 border rounded-xl cursor-pointer transition-colors ${formData.services.includes(service.id)
                             ? 'border-[#0B2C5E] bg-[#0B2C5E]'
                             : 'border-gray-200 bg-white'
-                        }`}
+                          }`}
                       >
                         <input
                           type="checkbox"
@@ -373,7 +501,7 @@ export default function RegisterPage() {
                     ))}
                   </div>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Présentez-vous *
@@ -391,7 +519,7 @@ export default function RegisterPage() {
                     {formData.bio.length} / 400
                   </div>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Zone d'intervention
@@ -405,7 +533,7 @@ export default function RegisterPage() {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0B2C5E]"
                   />
                 </div>
-                
+
                 <div className="flex space-x-4">
                   <button
                     onClick={prevStep}
@@ -430,7 +558,7 @@ export default function RegisterPage() {
                   Documents
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-[#0B2C5E]"></span>
                 </h3>
-                
+
                 {/* Photo de profil */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -473,7 +601,7 @@ export default function RegisterPage() {
                     className="hidden"
                   />
                 </div>
-                
+
                 {/* Carte d'identité */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -510,7 +638,7 @@ export default function RegisterPage() {
                     className="hidden"
                   />
                 </div>
-                
+
                 {/* Certificat professionnel */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -550,7 +678,7 @@ export default function RegisterPage() {
                     className="hidden"
                   />
                 </div>
-                
+
                 {/* Security info */}
                 <div className="bg-[#0B2C5E] border-l-4 border-[#0B2C5E] p-4 rounded-lg">
                   <div className="flex items-start">
@@ -560,7 +688,7 @@ export default function RegisterPage() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex space-x-4">
                   <button
                     onClick={prevStep}

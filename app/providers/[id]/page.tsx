@@ -1,422 +1,275 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
-import { Star, MapPin, Clock, DollarSign, CheckCircle, Share2, Phone, MessageCircle, ChevronRight, Plus } from "lucide-react";
-import ReviewForm from "@/components/ReviewForm";
+import {
+  MapPin,
+  CheckCircle,
+  User,
+  Briefcase,
+  ArrowLeft,
+  Sparkles,
+} from "lucide-react";
+import { publicApi, apiConfig } from "@/lib/api";
+
+function profileImageUrl(path: string | undefined) {
+  if (!path) return null;
+  if (path.startsWith("http")) return path;
+  return `${apiConfig.baseURL}${path}`;
+}
+
+const CITY_LABELS: Record<string, string> = {
+  casablanca: "Casablanca",
+  rabat: "Rabat",
+  marrakech: "Marrakech",
+  fes: "Fès",
+  fez: "Fès",
+  tanger: "Tanger",
+  agadir: "Agadir",
+  meknes: "Meknès",
+  meknès: "Meknès",
+  oujda: "Oujda",
+  tetouan: "Tétouan",
+  tétouan: "Tétouan",
+};
+
+function formatCity(city: string | undefined | null): string {
+  if (!city?.trim()) return "Ville non précisée";
+  const key = city.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  if (CITY_LABELS[key]) return CITY_LABELS[key];
+  return city
+    .trim()
+    .toLowerCase()
+    .split(/[\s_]+/)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+const SERVICE_LABELS: Record<string, string> = {
+  PLOMBERIE: "Plomberie",
+  ELECTRICITE: "Électricité",
+  ELECTRICITÉ: "Électricité",
+  PEINTURE: "Peinture",
+  MENUISERIE: "Menuiserie",
+  NETTOYAGE: "Nettoyage",
+  CLIMATISATION: "Climatisation",
+  JARDINAGE: "Jardinage",
+  DEMENAGEMENT: "Déménagement",
+  DÉMÉNAGEMENT: "Déménagement",
+};
+
+function formatServiceLabel(service: string): string {
+  const u = service.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  if (SERVICE_LABELS[u]) return SERVICE_LABELS[u];
+  if (SERVICE_LABELS[service.trim()]) return SERVICE_LABELS[service.trim()];
+  return service
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function formatExperienceYears(value: string | undefined | null): string {
+  if (value == null || value === "") return "Expérience non précisée";
+  const v = String(value).trim();
+  const map: Record<string, string> = {
+    LESS_THAN_1: "Moins d'un an",
+    ONE_TO_3: "1 à 3 ans",
+    THREE_TO_5: "3 à 5 ans",
+    FIVE_TO_10: "5 à 10 ans",
+    MORE_THAN_10: "Plus de 10 ans",
+  };
+  if (map[v]) return map[v];
+  if (/^\d+$/.test(v)) return `${v} an${v === "1" ? "" : "s"} d'expérience`;
+  return v.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+}
 
 export default function ProviderProfilePage() {
-  // État pour le formulaire d'avis
-  const [showReviewForm, setShowReviewForm] = useState(false);
-  const [reviews, setReviews] = useState([
-    {
-      id: 1,
-      initials: "YA",
-      name: "Youssef A.",
-      date: "15 Mars 2025",
-      rating: 5,
-      comment: "Excellent travail! Karim a résolu ma fuite rapidement et à un prix très raisonnable. Je recommande vivement.",
-      service: "Plomberie"
-    },
-    {
-      id: 2,
-      initials: "FB",
-      name: "Fatima B.",
-      date: "8 Mars 2025",
-      rating: 5,
-      comment: "Très professionnel et ponctuel. Il a installé notre nouvelle salle de bain parfaitement. Merci encore!",
-      service: "Installation sanitaire"
-    },
-    {
-      id: 3,
-      initials: "MA",
-      name: "Mohamed A.",
-      date: "1 Mars 2025",
-      rating: 4,
-      comment: "Bon travail dans l'ensemble, un peu cher mais la qualité est là. Sera à nouveau contacté pour d'autres travaux.",
-      service: "Dépannage"
-    },
-    {
-      id: 4,
-      initials: "SA",
-      name: "Samira K.",
-      date: "22 Février 2025",
-      rating: 5,
-      comment: "Service impeccable! Intervention rapide et travail soigné. Karim est vraiment un artisan de confiance.",
-      service: "Urgence"
+  const params = useParams();
+  const router = useRouter();
+  const [provider, setProvider] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (params.id) {
+      fetchProvider(params.id as string);
     }
-  ]);
+  }, [params.id]);
 
-  // Fonction pour ajouter un nouvel avis
-  const handleReviewSubmit = (newReview: {
-    rating: number;
-    comment: string;
-    service: string;
-    customerName: string;
-  }) => {
-    const review = {
-      id: reviews.length + 1,
-      initials: newReview.customerName.split(' ').map(n => n[0]).join('').toUpperCase(),
-      name: newReview.customerName,
-      date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }),
-      rating: newReview.rating,
-      comment: newReview.comment,
-      service: newReview.service
-    };
-    
-    setReviews([review, ...reviews]);
+  const fetchProvider = async (id: string) => {
+    try {
+      const data = await publicApi.getProviderProfile(id);
+      setProvider(data);
+    } catch (error) {
+      console.error("Error fetching provider:", error);
+      router.push("/providers");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Mock provider data - in a real app, this would come from params and API
-  const provider = {
-    id: 1,
-    name: "Karim Benani",
-    skill: "Plomberie",
-    rating: 4.8,
-    reviewCount: 47,
-    city: "Casablanca",
-    responseTime: "~2 heures",
-    experience: "5-10 ans",
-    rate: 150,
-    available: true,
-    verified: true,
-    skills: ["Plomberie", "Étanchéité", "Sanitaire", "Chauffage"],
-    bio: "Artisan plombier avec plus de 8 ans d'expérience dans la région de Casablanca. Spécialisé dans les installations sanitaires, le dépannage d'urgence et les travaux de rénovation. Je suis certifié et assuré, et je m'engage à fournir un travail de qualité avec garantie sur toutes mes interventions.",
-    traits: ["Ponctuel", "Propre", "Certifié", "Rapide"],
-    stats: {
-      responseTime: "~2 heures",
-      acceptanceRate: "95%",
-      interventions: 134,
-      memberSince: "Janvier 2024"
-    },
-    reviews: [
-      {
-        id: 1,
-        initials: "YA",
-        name: "Youssef A.",
-        date: "15 Mars 2025",
-        rating: 5,
-        comment: "Excellent travail! Karim a résolu ma fuite rapidement et à un prix très raisonnable. Je recommande vivement.",
-        service: "Plomberie"
-      },
-      {
-        id: 2,
-        initials: "FB",
-        name: "Fatima B.",
-        date: "8 Mars 2025",
-        rating: 5,
-        comment: "Très professionnel et ponctuel. Il a installé notre nouvelle salle de bain parfaitement. Merci encore!",
-        service: "Installation sanitaire"
-      },
-      {
-        id: 3,
-        initials: "MA",
-        name: "Mohamed A.",
-        date: "1 Mars 2025",
-        rating: 4,
-        comment: "Bon travail dans l'ensemble, un peu cher mais la qualité est là. Sera à nouveau contacté pour d'autres travaux.",
-        service: "Dépannage"
-      },
-      {
-        id: 4,
-        initials: "SA",
-        name: "Samira K.",
-        date: "22 Février 2025",
-        rating: 5,
-        comment: "Service impeccable! Intervention rapide et travail soigné. Karim est vraiment un artisan de confiance.",
-        service: "Urgence"
-      }
-    ]
-  };
+  if (loading) {
+    return (
+      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4 bg-gray-50">
+        <div className="h-12 w-12 rounded-full border-2 border-gray-200 border-t-[#F27405] animate-spin" />
+        <p className="text-gray-600 font-medium">Chargement du profil…</p>
+      </div>
+    );
+  }
 
-  const ratingBreakdown = [
-    { stars: 5, count: 38, percentage: 82 },
-    { stars: 4, count: 6, percentage: 12 },
-    { stars: 3, count: 2, percentage: 4 },
-    { stars: 2, count: 1, percentage: 1 },
-    { stars: 1, count: 0, percentage: 1 }
-  ];
+  if (!provider) {
+    return (
+      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4 px-4">
+        <User className="h-16 w-16 text-gray-300" />
+        <h3 className="text-xl font-bold text-gray-900">Artisan introuvable</h3>
+        <Link
+          href="/providers"
+          className="font-semibold text-[#0B2C5E] hover:underline"
+        >
+          Retour aux artisans
+        </Link>
+      </div>
+    );
+  }
+
+  const fullName =
+    `${provider.firstName || ""} ${provider.lastName || ""}`.trim() ||
+    "Artisan";
+  const cityLabel = formatCity(provider.city);
+  const experienceLabel = formatExperienceYears(provider.yearsOfExperience);
+  const img = profileImageUrl(provider.profilePhotoUrl);
+  const services: string[] = Array.isArray(provider.services)
+    ? provider.services
+    : [];
 
   return (
     <div className="flex flex-col">
-      {/* PROFILE HEADER CARD */}
-      <div className="bg-white py-8 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white border border-gray-200 rounded-2xl p-8">
-            <div className="flex flex-col lg:flex-row gap-8">
-              {/* Left side - Profile photo */}
-              <div className="flex-shrink-0">
-                <div className="relative">
-                  <div className="w-28 h-28 bg-gray-200 rounded-full border-4 border-[#0B3B24]"></div>
-                  {provider.verified && (
-                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                      <CheckCircle className="w-5 h-5 text-white" />
-                    </div>
-                  )}
+      {/* Hero — thème aligné accueil / liste artisans */}
+      <section
+        className="border-b border-gray-100 px-4 pb-12 pt-6 md:pt-8"
+        style={{
+          background: "linear-gradient(90deg, #FFFFFF 55%, #FDF0E0 100%)",
+        }}
+      >
+        <div className="mx-auto max-w-4xl">
+          <Link
+            href="/providers"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-[#0B2C5E] transition hover:gap-3"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Retour aux artisans
+          </Link>
+
+          <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
+            <div className="relative shrink-0">
+              {img ? (
+                <img
+                  src={img}
+                  alt={fullName}
+                  className="h-36 w-36 rounded-2xl object-cover shadow-lg ring-4 ring-white sm:h-40 sm:w-40"
+                />
+              ) : (
+                <div className="flex h-36 w-36 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0B2C5E]/10 to-[#F27405]/15 shadow-inner ring-4 ring-white sm:h-40 sm:w-40">
+                  <User className="h-16 w-16 text-[#0B2C5E]/35" />
                 </div>
+              )}
+              <div
+                className="absolute -bottom-2 -right-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md ring-4 ring-white"
+                title="Profil vérifié"
+              >
+                <CheckCircle className="h-5 w-5" />
               </div>
-              
-              {/* Right side - Info */}
-              <div className="flex-1">
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">{provider.name}</h1>
-                <p className="text-xl text-[#0B3B24] font-medium mb-4">{provider.skill}</p>
-                
-                <div className="flex items-center mb-4">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-5 h-5 ${i < Math.floor(provider.rating) ? 'text-[#4A8B71] fill-current' : 'text-gray-300'}`}
-                      />
-                    ))}
-                  </div>
-                  <span className="ml-2 text-2xl font-bold text-gray-900">{provider.rating}</span>
-                  <span className="ml-2 text-gray-500">({provider.reviewCount} avis)</span>
-                </div>
-                
-                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
-                  <div className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    {provider.city}
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="w-4 h-4 mr-1" />
-                    {provider.experience} exp
-                  </div>
-                  <div className="flex items-center">
-                    <DollarSign className="w-4 h-4 mr-1" />
-                    {provider.rate} MAD/h
-                  </div>
-                </div>
-                
-                <div className="mb-4">
-                  <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium ${
-                    provider.available
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-[#C2E0C6] text-[#0B3B24]'
-                  }`}>
-                    <span className="w-2 h-2 bg-current rounded-full mr-2"></span>
-                    {provider.available ? 'Disponible' : 'Occupé'}
-                  </div>
-                </div>
-                
-                <div className="flex flex-wrap gap-2">
-                  {provider.skills.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 border border-[#0B3B24] text-[#0B3B24] rounded-full text-sm"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+            </div>
+
+            <div className="min-w-0 flex-1 text-center sm:text-left">
+              <h1 className="text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
+                {fullName}
+              </h1>
+
+              <div className="mt-6 flex flex-wrap justify-center gap-3 sm:justify-start">
+                <span className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white/90 px-4 py-2 text-sm font-semibold text-gray-800 shadow-sm">
+                  <MapPin className="h-4 w-4 shrink-0 text-[#0B2C5E]" />
+                  {cityLabel}
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white/90 px-4 py-2 text-sm font-semibold text-gray-800 shadow-sm">
+                  <Briefcase className="h-4 w-4 shrink-0 text-[#F27405]" />
+                  {experienceLabel}
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-xl border border-[#F27405]/25 bg-[#F27405]/10 px-4 py-2 text-sm font-bold text-[#d96504] shadow-sm">
+                  {provider.hourlyRate != null && provider.hourlyRate !== ""
+                    ? `${provider.hourlyRate} MAD/h`
+                    : "Tarif sur demande"}
+                </span>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* MAIN CONTENT */}
-      <div className="bg-[#B8CDD1] py-8 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* CONTENT COLUMN (70%) */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* About section */}
-              <div className="bg-white rounded-xl border border-gray-200 p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4 relative">
-                  À propos
-                  <span className="absolute bottom-0 left-0 w-16 h-1 bg-[#4A8B71]"></span>
-                </h3>
-                <p className="text-gray-600 mb-4">{provider.bio}</p>
-                <div className="flex flex-wrap gap-2">
-                  {provider.traits.map((trait, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-sm font-medium"
-                    >
-                      {trait}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Gallery section */}
-              <div className="bg-white rounded-xl border border-gray-200 p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4 relative">
-                  Galerie de travaux
-                  <span className="absolute bottom-0 left-0 w-16 h-1 bg-[#4A8B71]"></span>
-                </h3>
-                <div className="grid grid-cols-3 gap-4 mb-4">
-                  {[...Array(6)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center"
-                    >
-                      <span className="text-gray-400 text-3xl">🖼</span>
-                    </div>
-                  ))}
-                </div>
-                <a href="#" className="text-[#0B3B24] hover:text-[#4A8B71] font-medium text-sm">
-                  Voir plus
-                </a>
-              </div>
-
-              {/* Reviews section */}
-              <div className="bg-white rounded-xl border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 relative">
-                    Avis clients ({reviews.length})
-                    <span className="absolute bottom-0 left-0 w-16 h-1 bg-[#4A8B71]"></span>
-                  </h3>
-                  <button
-                    onClick={() => setShowReviewForm(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors text-sm font-medium"
-                  >
-                    <Plus className="w-4 h-4" />
-                    Laisser un avis
-                  </button>
-                </div>
-                
-                {/* Rating summary */}
-                <div className="flex items-center gap-8 mb-6">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-[#0B3B24]">{provider.rating}</div>
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-5 h-5 ${i < Math.floor(provider.rating) ? 'text-[#4A8B71] fill-current' : 'text-gray-300'}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="flex-1">
-                    {ratingBreakdown.map(item => (
-                      <div key={item.stars} className="flex items-center gap-3 mb-1">
-                        <div className="flex items-center">
-                          <span className="text-sm text-gray-600 w-8">{item.stars}{" "}</span>
-                          <Star className="w-3 h-3 text-[#4A8B71] fill-current" />
-                        </div>
-                        <div className="flex-1 bg-gray-200 rounded-full h-2">
-                          <div
-                            className="bg-[#0B3B24] h-2 rounded-full"
-                            style={{ width: `${item.percentage}%` }}
-                          ></div>
-                        </div>
-                        <span className="text-sm text-gray-600 w-12 text-right">{item.count}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Individual reviews */}
-                <div className="space-y-4">
-                  {reviews.map(review => (
-                    <div key={review.id} className="border-b border-gray-100 pb-4 last:border-b-0">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-[#0B3B24] rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                          {review.initials}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-2">
-                            <div>
-                              <span className="font-bold text-gray-900">{review.name}</span>
-                              <span className="text-gray-500 text-sm ml-2">{review.date}</span>
-                            </div>
-                            <span className="px-2 py-1 bg-[#C2E0C6] text-[#0B3B24] rounded-full text-xs">
-                              {review.service}
-                            </span>
-                          </div>
-                          <div className="flex mb-2">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`w-4 h-4 ${i < review.rating ? 'text-[#4A8B71] fill-current' : 'text-gray-300'}`}
-                              />
-                            ))}
-                          </div>
-                          <p className="text-gray-600">{review.comment}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <button className="w-full py-3 border border-[#0B3B24] text-[#0B3B24] rounded-lg hover:bg-[#C2E0C6] transition-colors font-medium mt-6">
-                  Charger plus d'avis
-                </button>
-              </div>
-            </div>
-
-            {/* SIDEBAR (30%) */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl border border-gray-200 p-6 lg:sticky lg:top-4">
-                <button className="w-full py-3 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium mb-6">
-                  Demander ce prestataire
-                </button>
-                
-                <div className="border-t border-gray-200 pt-6 mb-6">
-                  <h4 className="font-bold text-gray-900 mb-4">Statistiques rapides</h4>
-                  <div className="space-y-3">
-                    <div className="flex items-center text-sm">
-                      <span className="text-gray-500 w-8">✓</span>
-                      <span className="text-gray-600">Temps de réponse:</span>
-                      <span className="font-medium text-gray-900 ml-auto">{provider.stats.responseTime}</span>
-                    </div>
-                    <div className="flex items-center text-sm">
-                      <span className="text-green-500 w-8">✓</span>
-                      <span className="text-gray-600">Taux d'acceptation:</span>
-                      <span className="font-medium text-gray-900 ml-auto">{provider.stats.acceptanceRate}</span>
-                    </div>
-                    <div className="flex items-center text-sm">
-                      <span className="text-[#0B3B24] w-8">✓</span>
-                      <span className="text-gray-600">Interventions:</span>
-                      <span className="font-medium text-gray-900 ml-auto">{provider.stats.interventions} effectuées</span>
-                    </div>
-                    <div className="flex items-center text-sm">
-                      <span className="text-blue-500 w-8">📅</span>
-                      <span className="text-gray-600">Membre depuis:</span>
-                      <span className="font-medium text-gray-900 ml-auto">{provider.stats.memberSince}</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="border-t border-gray-200 pt-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600 text-sm">Partager:</span>
-                    <div className="flex space-x-2">
-                      <button className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                        <MessageCircle className="w-4 h-4 text-white" />
-                      </button>
-                      <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                        <Share2 className="w-4 h-4 text-gray-600" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className="mx-auto w-full max-w-4xl flex-1 space-y-8 px-4 py-10">
+        {/* Services */}
+        <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:p-8">
+          <div className="mb-5 flex items-center gap-2">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B2C5E] text-white">
+              <Sparkles className="h-5 w-5" />
+            </span>
+            <h2 className="text-xl font-bold text-gray-900">
+              Services proposés
+            </h2>
           </div>
-        </div>
-      </div>
+          {services.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {services.map((service: string, index: number) => (
+                <span
+                  key={`${service}-${index}`}
+                  className="rounded-full border border-[#0B2C5E]/12 bg-[#0B2C5E]/6 px-4 py-2 text-sm font-semibold text-[#0B2C5E]"
+                >
+                  {formatServiceLabel(service)}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500">Aucun service renseigné.</p>
+          )}
+        </section>
 
-      {/* MOBILE STICKY BOTTOM BAR */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-50">
-        <button className="w-full py-3 bg-[#0B3B24] text-white rounded-lg hover:bg-[#072a19] transition-colors font-medium">
-          Demander ce prestataire
-        </button>
-      </div>
+        {/* Expérience + bio */}
+        <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:p-8">
+          <div className="mb-5 flex items-center gap-2">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F27405]/15 text-[#d96504]">
+              <Briefcase className="h-5 w-5" />
+            </span>
+            <h2 className="text-xl font-bold text-gray-900">
+              Expérience professionnelle
+            </h2>
+          </div>
+          <p className="mb-4 text-lg font-semibold text-[#0B2C5E]">
+            {experienceLabel}
+          </p>
+          {provider.bio ? (
+            <p className="leading-relaxed text-gray-600">{provider.bio}</p>
+          ) : (
+            <p className="text-gray-500">Aucune présentation pour le moment.</p>
+          )}
+        </section>
 
-      {/* Review Form Modal */}
-      {showReviewForm && (
-        <ReviewForm
-          artisanId={provider.id.toString()}
-          onReviewSubmit={handleReviewSubmit}
-          onClose={() => setShowReviewForm(false)}
-        />
-      )}
+        {/* Zone d'intervention */}
+        {provider.interventionZone ? (
+          <section className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm md:p-8">
+            <div className="mb-5 flex items-center gap-2">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-[#0B2C5E]">
+                <MapPin className="h-5 w-5" />
+              </span>
+              <h2 className="text-xl font-bold text-gray-900">
+                Zone d&apos;intervention
+              </h2>
+            </div>
+            <p className="leading-relaxed text-gray-700">
+              {provider.interventionZone}
+            </p>
+          </section>
+        ) : null}
+      </div>
     </div>
   );
 }

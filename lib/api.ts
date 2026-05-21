@@ -33,6 +33,19 @@ export const apiConfig = {
   },
 };
 
+/** Réponse API : tableau direct ou enveloppe Spring Page ({ content, data, ... }). */
+export type PaginatedResponse<T> = T[] | { content?: T[]; data?: T[] };
+
+/** Extrait un tableau depuis une réponse API (liste ou page paginée). */
+export function unwrapListResponse<T>(data: unknown): T[] {
+  if (Array.isArray(data)) return data as T[];
+  if (data && typeof data === 'object') {
+    const obj = data as { content?: T[]; data?: T[] };
+    return obj.content ?? obj.data ?? [];
+  }
+  return [];
+}
+
 // Helper function pour les appels API
 export async function apiRequest<T>(
   endpoint: string,
@@ -118,7 +131,7 @@ export const authApi = {
     }),
 
   // Register Provider (multipart)
-  providerRegister: (data: any, profilePhoto?: File, cinDocument?: File, certificate?: File) => {
+  providerRegister: (data: any, profilePhoto?: File | null, cinDocument?: File | null, certificate?: File | null) => {
     const formData = new FormData();
     formData.append('data', JSON.stringify(data));
     
@@ -202,7 +215,7 @@ export const adminApi = {
     if (status) params.append('status', status);
     if (city) params.append('city', city);
     const url = params.toString() ? `${apiConfig.endpoints.admin.providers}?${params.toString()}` : apiConfig.endpoints.admin.providers;
-    return apiRequest(url);
+    return apiRequest<PaginatedResponse<Record<string, unknown>>>(url);
   },
 
   // Get provider detail
@@ -233,7 +246,7 @@ export const adminApi = {
     if (status) params.append('status', status);
     if (serviceType) params.append('serviceType', serviceType);
     const url = params.toString() ? `${apiConfig.endpoints.admin.requests}?${params.toString()}` : apiConfig.endpoints.admin.requests;
-    return apiRequest(url);
+    return apiRequest<PaginatedResponse<Record<string, unknown>>>(url);
   },
 };
 

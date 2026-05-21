@@ -165,9 +165,9 @@ export default function RegisterPage() {
         
         const response = await authApi.providerRegister(
           dataPayload,
-          formData.profilePhoto,
-          formData.cinDocument,
-          formData.certificate
+          formData.profilePhoto ?? undefined,
+          formData.cinDocument ?? undefined,
+          formData.certificate ?? undefined
         );
         
         console.log('Registration response:', response);

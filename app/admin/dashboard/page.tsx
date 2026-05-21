@@ -10,7 +10,7 @@ import {
   XCircle, AlertTriangle, Play, Filter, MoreHorizontal
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { adminApi, apiConfig } from "@/lib/api";
+import { adminApi, apiConfig, unwrapListResponse } from "@/lib/api";
 
 interface Provider {
   id: number | string;
@@ -55,21 +55,19 @@ export default function AdminDashboardPage() {
   const fetchAllProviders = async () => {
     try {
       const data = await adminApi.getProviders();
-      let providers = Array.isArray(data) ? data : data?.content || data?.data || [];
-      setAllProviders(providers);
+      setAllProviders(unwrapListResponse(data));
     } catch { setAllProviders([]); }
   };
   const fetchAllRequests = async () => {
     try {
       const data = await adminApi.getRequests();
-      setAllRequests((data as any)?.content || data || []);
+      setAllRequests(unwrapListResponse(data));
     } catch { setAllRequests([]); }
   };
   const fetchPendingProviders = async () => {
     try {
       const data = await adminApi.getProviders('PENDING');
-      let providers = Array.isArray(data) ? data : data?.content || data?.data || [];
-      setPendingProviders(providers);
+      setPendingProviders(unwrapListResponse<Provider>(data));
     } catch { setPendingProviders([]); }
   };
 

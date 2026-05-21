@@ -118,11 +118,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const response = await authApi.firebaseLogin(firebaseToken) as AuthResponse;
 
-      const userData = {
+      const userData: User = {
         id: response.user?.id || response.id || '',
         email: response.user?.email || '',
         name: response.user?.name || response.name,
-        role: 'provider'
+        role: 'provider',
       };
 
       setUser(userData);
